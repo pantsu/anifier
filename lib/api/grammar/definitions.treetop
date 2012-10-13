@@ -60,7 +60,7 @@ grammar Definitions
   end
 
   rule separator
-    ('. ' / ' _' / ' ' / '_')+
+    ('. ' / ' .' / ' _' / '_ ' / ' ' / '_')+
   end
 
   rule serial_separator

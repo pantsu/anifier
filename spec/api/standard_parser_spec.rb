@@ -154,6 +154,24 @@ describe 'StandardParser' do
     end
   end
 
+  it "is able to handle combo codec declaration" do
+    @raw = "[SakuraCircle] Acchi Kocchi - 06 [H264+FLAC] [BD 1920x1080] [391205F3].mkv"
+    subject.video.should == 'h264'
+    subject.audio.should == 'flac'
+  end
+
+  describe "detecting media" do
+    it "is able to detect media" do
+      @raw = "[SakuraCircle] Acchi Kocchi - 06 [H264+FLAC] [BD 1920x1080] [391205F3].mkv"
+      subject.media.should == 'bd'
+    end
+
+    it "is able to detect media specified with separator" do
+      @raw = "[SakuraCircle] Acchi Kocchi - 06 [H264+FLAC] [Blu-Ray 1920x1080] [391205F3].mkv"
+      subject.media.should == 'blu-ray'
+    end
+  end
+
   it "is able to handle nested brases" do
     @raw = "[SakuraCircle] Acchi Kocchi - 06 [H264] [BD 1920x1080 (whatever)] [FLAC] [391205F3].mkv"
     subject.releaser.should == 'SakuraCircle'
