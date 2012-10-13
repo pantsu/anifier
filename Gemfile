@@ -9,10 +9,12 @@ gem 'omniauth'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'draper'
-gem 'slim'
 gem 'thinking-sphinx'
 gem 'unicorn'
 gem 'jquery-rails'
+
+# gem 'slim'
+gem 'haml-rails'
 
 group :api do
   gem 'feedzirra'
@@ -22,7 +24,10 @@ end
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'bootstrap-sass'
+  # gem 'bootstrap-sass'
+  gem 'twitter-bootstrap-rails'
+  gem 'chosen-rails'
+  gem 'mousetrap-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
