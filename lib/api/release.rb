@@ -19,5 +19,9 @@ module API
       end
       self
     end
+
+    def to_hash
+      Hash[*members.zip(values).flatten]
+    end
   end
 end
