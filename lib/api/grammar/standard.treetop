@@ -16,7 +16,7 @@ grammar Standard
   end
 
   rule title
-    (!serial (word / separator+ / [\(\)\[\]]))+ {
+    (!serial word / separator+ / [\(\)\[\]])+ {
       def content
         [:title, text_value.strip.gsub('_', ' ')]
       end
@@ -32,7 +32,7 @@ grammar Standard
   end
 
   rule metadata
-    (codec_combo / codec_audio / codec_video / media / dimension / word / separator)*
+    (codec_combo / codec_audio / codec_video / media / resolution / word / separator)*
   end
 
   rule crc32

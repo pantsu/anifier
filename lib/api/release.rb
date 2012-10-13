@@ -1,5 +1,5 @@
 module API
-  Release = Struct.new(:raw, :releaser, :title, :episodes, :volume, :extension, :audio, :video, :media, :dimension, :crc32)
+  Release = Struct.new(:raw, :releaser, :title, :episodes, :volume, :extension, :audio, :video, :media, :resolution, :crc32)
 
   class Release
     def self.build(raw, *elements)

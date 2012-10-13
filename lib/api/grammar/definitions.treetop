@@ -8,12 +8,12 @@ grammar Definitions
     }
   end
 
-  rule dimension
+  rule resolution
     (digits [pP] / digits [xX] digits) {
       def content
         case elements.size
-        when 2; [:dimension, elements.first.text_value]
-        when 3; [:dimension, elements.last.text_value]
+        when 2; [:resolution, elements.first.text_value]
+        when 3; [:resolution, elements.last.text_value]
         end
       end
     }
@@ -36,7 +36,7 @@ grammar Definitions
   end
 
   rule episodes
-    separator* digits ([\-~] digits)? version? separator* {
+    separator* (digits / sequence) version? separator* {
       def content
         [:episodes, elements[1..-2].map(&:text_value).join]
       end
@@ -61,6 +61,10 @@ grammar Definitions
 
   rule separator
     [\s_]
+  end
+
+  rule sequence
+    digits [\-~] digits
   end
 
   rule digits
