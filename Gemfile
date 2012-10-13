@@ -15,6 +15,7 @@ gem 'jquery-rails'
 
 # gem 'slim'
 gem 'haml-rails'
+gem 'simple_form'
 
 group :api do
   gem 'feedzirra'
