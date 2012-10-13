@@ -20,7 +20,7 @@ describe Release do
 
   describe "::create_from_parsed_data" do
     subject { Release }
-    let(:attributes) { [:raw, :releaser, :title, :episodes, :volume, :extension, :audio, :video, :media, :resolution, :crc32].inject({}) { |hsh, attr| hsh[attr] = attr; hsh } }
+    let(:attributes) { API::RELEASE_ATTRIBUTES.inject({}) { |hsh, attr| hsh[attr] = attr; hsh } }
 
     it "raises error if unknown attribute is passed" do
       expect { subject.create_from_parsed_data(some_shit: 'some_shit', same_shit: 'same_shit') }\
@@ -28,21 +28,25 @@ describe Release do
     end
 
     it "creates new release" do
-      instance = subject.create_from_parsed_data(attributes).should be_true
+      instance = subject.create_from_parsed_data(attributes)
+      instance.should be_persisted
     end
 
-    # it "sets all passed attributes" do
-    #   instance = subject.create_from_parsed_data(attributes)
-    #   attributes.keys.each { |attr| instance.send(attr).should == attr }
-    # end
+    it "sets all passed attributes" do
+      instance = subject.create_from_parsed_data(attributes)
+      attributes.keys.each { |attr| instance.send(attr).should == attr unless attr.in?([:title, :releaser]) }
+      [:title, :releaser].each { |attr| instance.send(attr).should be_instance_of(attr.to_s.classify.constantize) }
+    end
 
     %w(title releaser).each do |assoc|
       it "creates new #{assoc} is there is no needed one" do
-
+        expect { subject.create_from_parsed_data(attributes) }.to change(assoc.classify.constantize, :count).by(1)
       end
 
       it "does not create new #{assoc} if the one needed is already present" do
-
+        klass = assoc.classify.constantize
+        klass.create(name: assoc)
+        expect { subject.create_from_parsed_data(attributes) }.to_not change(klass, :count).by(1)
       end
     end
   end
