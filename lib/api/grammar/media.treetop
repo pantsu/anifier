@@ -16,7 +16,8 @@ grammar Media
     ( [xhH] '264' /
       [xX] [vV] [iI] [dD] /
       [dD] [iI] [vV] [xX] /
-      [mM] [pP] [eE] [gG] [2]) {
+      [mM] [pP] [eE] [gG] [2] /
+      [wW] [mM] [vV] [9]) {
         def content
           [:video, text_value.downcase]
         end
@@ -24,7 +25,7 @@ grammar Media
   end
 
   rule codec_audio
-    ( [fF] [lL] [aA] [cC] /
+    ( ([dD] [uU] [aA] [lL])? [fF] [lL] [aA] [cC] /
       [aA] [aA] [cC] /
       [oO] [gG] [gG] /
       [vV] [oO] [rR] [bB] [iI] [sS]) {
