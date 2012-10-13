@@ -8,4 +8,6 @@ class Subscription < ActiveRecord::Base
   validates :user_id, :title_id, presence: true
   validates :title_id, uniqueness: { scope: :user_id }, if: ->(obj){ obj[:releaser_id].nil? }
   validates :releaser_id, uniqueness: { scope: [:user_id, :title_id] }, allow_nil: true
+
+  key_attr_scope :user, :title, :releaser
 end

@@ -40,6 +40,7 @@ class Release < ActiveRecord::Base
         end
       end
     end
+  rescue ActiveRecord::RecordNotUnique
   end
 
 end
