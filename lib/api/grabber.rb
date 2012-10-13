@@ -12,7 +12,11 @@ class API::Grabber
   def releases
     return @releases unless @releases.nil?
     feed = Feedzirra::Feed.fetch_and_parse(@url)
-    @releases = feed.entries.map { |entry| parse_release(entry) }.compact
+    if feed.respond_to?(:entries)
+      @releases = feed.entries.map { |entry| parse_release(entry) }.compact
+    else
+      @releases = []
+    end
   end
 
   private

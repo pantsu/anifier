@@ -4,30 +4,31 @@ class Release < ActiveRecord::Base
   belongs_to :releaser
   belongs_to :title
 
-  validates :raw, :title_id, :episodes, presence: true
+  validates :raw, :title_id, :releaser_id, :episodes, presence: true
   validates :raw, uniqueness: true
 
   define_index :releases do
-    indexes audio, video, media
+    indexes audio, video, media # @todo: checkme. ts may be buggy with MVA.
     indexes title(:name), as: :title, sortable: true
-    set_property delta: true
     has releaser_id, created_at
+
+    set_property delta: true
   end
 
   def self.from_feed(url)
-    API::Grabber.new(url).releases.each { |release_data| create_from_parsed_data(release_data.to_hash) }
+    API::Grabber.new(url).releases.each { |data| import(data) }
   end
 
-  def self.create_from_parsed_data(hash)
+  def self.import(data)
     attributes = columns_hash.keys
     create do |release|
-      hash.each do |k, v|
+      data.to_hash.each do |k,v|
         if k.to_s.in?(attributes)
           release[k] = v
-        elsif "#{k}_id".in?(attributes)
-          release["#{k}_id"] = k.to_s.classify.constantize.first_or_create(name: v).id
+        elsif (key = k.to_s.foreign_key).in?(attributes)
+          release[key] = k.to_s.classify.constantize.first_or_create(name: v).id
         else
-          raise ActiveRecord::UnknownAttributeError, "Unknown attribute: #{k}"
+          raise ActiveRecord::UnknownAttributeError, "Unknown attribute: #{k.inspect}"
         end
       end
     end
