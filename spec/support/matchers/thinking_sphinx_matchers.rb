@@ -21,7 +21,7 @@ module ThinkingSphinxMatchers
 
       @subject  = subject
       @indexes  = Array(options[:in])
-      @expected = args.map(&:to_sym)
+      @expected = args
     end
 
     def matches?(target)
