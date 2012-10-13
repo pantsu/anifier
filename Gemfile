@@ -34,6 +34,7 @@ group :development do
   gem 'hooves', require: 'hooves/default'
   gem 'capistrano'
   gem 'capistrano-ext'
+  gem 'rvm-capistrano'
 end
 
 group :development, :test do
