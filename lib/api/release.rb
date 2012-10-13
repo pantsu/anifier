@@ -1,5 +1,11 @@
 module API
-  RELEASE_ATTRIBUTES = [:raw, :releaser, :title, :episodes, :volume, :extension, :audio, :video, :media, :resolution, :crc32]
+
+  RELEASE_ATTRIBUTES = [
+    :raw,
+    :releaser, :title, :episodes, :volume,
+    :extension, :audio, :video, :media, :resolution, :crc32,
+    :details_url, :download_url]
+
   Release = Struct.new(*RELEASE_ATTRIBUTES)
 
   class Release

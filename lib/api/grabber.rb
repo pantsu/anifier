@@ -39,6 +39,8 @@ class API::Grabber
 
   def parse_release(entry)
     release = API::Release.build(entry.title, @parser)
+    release.details_url = entry.entry_id
+    release.download_url = entry.url
     release && release.valid? ? release : nil
   rescue Exception => e
     logger.error "Error during grab process: #{e.message}"
