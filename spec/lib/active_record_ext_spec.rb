@@ -1,20 +1,21 @@
 require 'spec_helper'
 
 describe 'ActiveRecordExt' do
-  subject { Notification }
+  subject { Subscription }
   it { be_respond_to(:for_user) }
-  it { be_respond_to(:for_release) }
+  it { be_respond_to(:for_title) }
+  it { be_respond_to(:for_releaser) }
 
   context "fetch only needed instances" do
-    before { 2.times { create(:notification) } }
-    let(:n) { Notification.last }
+    before { 2.times { create(:subscription) } }
+    let(:s) { Subscription.last }
 
     specify "when instance passed" do
-      subject.for_user(n.user).for_release(n.release).should == [n]
+      subject.for_user(s.user).for_title(s.title).for_releaser(s.releaser).should == [s]
     end
 
     it "when ids passed" do
-      subject.for_user(n.user_id).for_release(n.release_id).should == [n]
+      subject.for_user(s.user_id).for_title(s.title_id).for_releaser(s.releaser_id).should == [s]
     end
   end
 end

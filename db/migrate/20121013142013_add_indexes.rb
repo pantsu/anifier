@@ -11,7 +11,5 @@ class AddIndexes < ActiveRecord::Migration
     add_index :subscriptions, :title_id
     add_index :subscriptions, :releaser_id
     add_index :subscriptions, [:user_id, :title_id, :releaser_id], unique: true
-
-    add_index :notifications, [:user_id, :release_id], unique: true
   end
 end

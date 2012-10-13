@@ -1,13 +1,4 @@
-class Notification < ActiveRecord::Base
-  attr_protected
-
-  belongs_to :user
-  belongs_to :release
-
-  validates :user_id, uniqueness: { scope: [:release_id] }
-
-  key_attr_scope :user, :release
-
+class Notification
   def self.deliver(user, release)
     unless Notification.for_user(user).for_release(release).exists?
       UserMailer.delay.new_release(user, release)
