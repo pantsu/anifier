@@ -1,0 +1,42 @@
+grammar Standard
+
+  include Codecs
+  include Definitions
+
+  rule release
+    releaser separator* title separator* episodes (separator / meta / crc32)+ extname?
+  end
+
+  rule releaser
+    '[' separator* phrase separator* ']' {
+      def content
+        [:releaser, phrase.text_value]
+      end
+    }
+  end
+
+  rule title
+    (!episodes (word / separator / [\(\)\[\]]))+ {
+      def content
+        [:title, text_value.strip.gsub('_', ' ')]
+      end
+    }
+  end
+
+  rule episodes
+    [-#] super
+  end
+
+  rule meta
+    !crc32 ('[' metadata ']' / '(' metadata ')')
+  end
+
+  rule metadata
+    (audio / video / dimension / word / separator)*
+  end
+
+  rule crc32
+    separator* ('[' super ']' / '(' super ')') separator*
+  end
+
+end

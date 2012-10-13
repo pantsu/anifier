@@ -1,0 +1,62 @@
+grammar Definitions
+
+  rule crc32
+    [A-Fa-f0-9] 8..8  {
+      def content
+        [:crc32, text_value.downcase]
+      end
+    }
+  end
+
+  rule dimension
+    (digits [pP] / digits [xX] digits) {
+      def content
+        case elements.size
+        when 2; [:dimension, elements.first.text_value]
+        when 3; [:dimension, elements.last.text_value]
+        end
+      end
+    }
+  end
+
+  rule extname
+    '.' word {
+      def content
+        [:extension, word.text_value.downcase]
+      end
+    }
+  end
+
+  rule episodes
+    separator* digits ('-' digits)? version? separator* {
+      def content
+        [:episode, elements[1..-2].map(&:text_value).join]
+      end
+    }
+  end
+
+  rule version
+    [vV] digits
+  end
+
+  rule phrase
+    (word / separator)*
+  end
+
+  rule word
+    (unicode / [a-zA-Z0-9\-,;#\.])+
+  end
+
+  rule unicode
+    [\u0080-\u{10FFFF}]
+  end
+
+  rule separator
+    [\s_]
+  end
+
+  rule digits
+    [\d]+
+  end
+
+end
