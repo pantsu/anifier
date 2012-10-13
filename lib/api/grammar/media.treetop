@@ -34,8 +34,8 @@ grammar Media
       }
   end
 
-  rule codec_combo
-    (codec_video '+' codec_audio / codec_audio '+' codec_video)
+  rule codecs
+    (codec_video '+' codec_audio) / (codec_audio '+' codec_video) / codec_audio / codec_video
   end
 
   rule _separator

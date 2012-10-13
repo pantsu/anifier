@@ -4,7 +4,7 @@ grammar Standard
   include Definitions
 
   rule release
-    releaser separator* title separator* serial (separator / meta / crc32)* extname?
+    releaser separator* title separator* issue (separator / meta / crc32)* extname?
   end
 
   rule releaser
@@ -16,15 +16,15 @@ grammar Standard
   end
 
   rule title
-    (!serial (separator / word / round_braces / square_braces))+ {
+    (!issue (separator / word / round_braces / square_braces))+ {
       def content
         [:title, text_value.gsub(/(\s_)+/, " ").strip]
       end
     }
   end
 
-  rule serial
-    serial_separator? (original_episodes / volume / episodes) &(meta / crc32)
+  rule issue
+    issue_separator? super &(meta / crc32)
   end
 
   rule meta
@@ -32,7 +32,7 @@ grammar Standard
   end
 
   rule metadata
-    codec_combo / codec_audio / codec_video / media / resolution / word / separator
+    codecs / media / resolution / word / separator
   end
 
   rule crc32

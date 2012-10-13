@@ -35,7 +35,7 @@ grammar Definitions
     }
   end
 
-  rule original_episodes
+  rule episodes_jp
     separator* [\u{7B2C}] digits [\u{8A71}] separator* phrase {
       def content
         [:episodes, elements[2].text_value]
@@ -49,6 +49,14 @@ grammar Definitions
         [:episodes, elements[1..-2].map(&:text_value).join]
       end
     }
+  end
+
+  rule issue
+    volume / episodes_jp / episodes
+  end
+
+  rule issue_separator
+    '-' / '#'
   end
 
   rule version
@@ -69,10 +77,6 @@ grammar Definitions
 
   rule separator
     ([\u{a0}] / '. ' / ' .' / ' _' / '_ ' / ' ' / '_')+
-  end
-
-  rule serial_separator
-    '-' / '#'
   end
 
   rule round_braces
