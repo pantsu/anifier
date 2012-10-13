@@ -1,5 +1,8 @@
 class API::Grabber
 
+  class EmptyFeedException < StandardError
+  end
+
   def initialize(url)
     @url = url
     @parser = StandardParser.new
@@ -11,20 +14,39 @@ class API::Grabber
 
   def releases
     return @releases unless @releases.nil?
+    @releases = []
+
     feed = Feedzirra::Feed.fetch_and_parse(@url)
     if feed.respond_to?(:entries)
       @releases = feed.entries.map { |entry| parse_release(entry) }.compact
+      logger.info "Grabbed: #{@releases.size} / #{feed.entries.count} from #{@url}"
     else
-      @releases = []
+      logger.error "Feed #{@url} is empty"
     end
+
+    @releases
   end
 
   private
+
+  def logger
+    @logger ||= begin
+      log = Logger.new(Rails.root.join("log/grabber.#{Rails.env}.log"))
+      log.level = Logger::DEBUG
+      log.formatter = lambda do |severity, datetime, progname, message|
+        "[#{datetime.strftime("%Y-%m-%d %H:%M:%S")}] #{message}\n"
+      end
+      log
+    end
+  end
 
   def parse_release(entry)
     entry.title.force_encoding('UTF-8')
     release = API::Release.build(entry.title, @parser.parse(entry.title))
     release && release.valid? ? release : nil
+  rescue Exception => e
+    logger.error "Error during grab process: #{e.message}"
+    nil
   end
 
 end
