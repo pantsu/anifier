@@ -4,18 +4,12 @@ module Draped
   class NoDefaultDecoratorError < StandardError
   end
 
-  included do
-    cattr_accessor :default_decorator
-  end
-
   module ClassMethods
     def decorator
-      @decorator ||= respond_to?(:default_decorator) && default_decorator
       @decorator ||= begin
         "#{name}Decorator".constantize
-      rescue NameError => e
-        raise NoDefaultDecoratorError,
-          "There is no default decorator for class #{name}. Set it in default_decorator class method."
+      rescue NameError
+        raise NoDefaultDecoratorError, "There is no default decorator for class #{name}."
       end
     end
 
