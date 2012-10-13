@@ -3,8 +3,14 @@ timeout 3600
 
 before_fork do |server, worker|
   defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
+
+  if defined?(Redis) && (redis = Rails.redis_connection rescue nil) && redis.client.connected?
+    redis.save # dump
+    redis.quit # and disconnect
+  end
 end
 
 after_fork do |server, worker|
-  defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
+  defined?(ActiveRecord::Base) and
+    ActiveRecord::Base.establish_connection
 end
