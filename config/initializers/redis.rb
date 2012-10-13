@@ -2,7 +2,7 @@ module Rails
   class << self
     def redis
       redis_connection.client.connect unless redis_connection.client.connected?
-      @_redis ||= Redis::Namespace.new("animier-#{Rails.env}", redis: redis_connection)
+      @_redis ||= Redis::Namespace.new("anifier-#{Rails.env}", redis: redis_connection)
     end
 
     def redis_connection
