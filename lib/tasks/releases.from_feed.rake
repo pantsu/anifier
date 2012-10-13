@@ -1,6 +1,6 @@
 namespace :releases do
   desc "Pulls feed from tracker and creates releases from it"
-  task :from_feed, [url] => :environment do |task, args|
+  task :from_feed, [:url] => :environment do |task, args|
     begin
       release_count = Release.count
       Release.from_feed(args[:url])
