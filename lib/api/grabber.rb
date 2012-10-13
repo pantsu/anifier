@@ -24,3 +24,5 @@ class API::Grabber
   end
 
 end
+
+ActiveSupport.run_load_hooks(:grabber, self)
