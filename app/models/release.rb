@@ -9,9 +9,14 @@ class Release < ActiveRecord::Base
   validates :title_id, uniqueness: { scope: :releaser_id }
 
   define_index :releases do
-    indexes audio, video, media # @todo: checkme. ts may be buggy with MVA.
     indexes title(:name), as: :title, sortable: true
-    has releaser_id, created_at
+    indexes media
+
+    has "crc32(audio)", as: :audio, type: :integer
+    has "crc32(video)", as: :video, type: :integer
+
+    has releaser_id
+    has created_at
 
     set_property delta: true
   end
