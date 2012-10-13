@@ -3,10 +3,11 @@ module API
   Release = Struct.new(*RELEASE_ATTRIBUTES)
 
   class Release
-    def self.build(raw, *elements)
+    def self.build(raw, parser)
       instance = new
       instance.raw = raw
-      instance.append *elements
+      instance.raw.force_encoding('UTF-8')
+      instance.append *parser.parse(instance.raw)
       instance
     end
 

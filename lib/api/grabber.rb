@@ -38,8 +38,7 @@ class API::Grabber
   end
 
   def parse_release(entry)
-    entry.title.force_encoding('UTF-8')
-    release = API::Release.build(entry.title, @parser.parse(entry.title))
+    release = API::Release.build(entry.title, @parser)
     release && release.valid? ? release : nil
   rescue Exception => e
     logger.error "Error during grab process: #{e.message}"

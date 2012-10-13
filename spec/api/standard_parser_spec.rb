@@ -3,7 +3,7 @@
 describe 'StandardParser' do
   before(:each) { @parser = StandardParser.new }
 
-  subject { API::Release.build(@raw, @parser.parse(@raw)) }
+  subject { API::Release.build(@raw, @parser) }
 
   describe "detecting extension" do
     it "is able to detect extension" do
@@ -59,6 +59,12 @@ describe 'StandardParser' do
       @raw = "[Asenshi] K - 01v2 [4E7ED966].mkv"
       subject.episodes.should == '01v2'
     end
+
+    it "is able to detect episode specified with kanji" do
+      @raw = "[Raws-4U] ちとせげっちゅ！！ 第15話 「うんどうかい」 (TVS 1280x720 x264 AAC).mp4"
+      subject.episodes.should == '15'
+    end
+
   end
 
   describe "detecting volume" do

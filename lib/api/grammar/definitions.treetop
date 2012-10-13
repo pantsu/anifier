@@ -35,6 +35,14 @@ grammar Definitions
     }
   end
 
+  rule original_episodes
+    separator* [\u{7B2C}] digits [\u{8A71}] separator* phrase {
+      def content
+        [:episodes, elements[2].text_value]
+      end
+    }
+  end
+
   rule episodes
     separator* (sequence / digits) version? separator* {
       def content
@@ -48,19 +56,19 @@ grammar Definitions
   end
 
   rule phrase
-    (word / separator)*
+    (word / separator)+
   end
 
   rule word
-    !separator (unicode / [a-zA-Z0-9\-:!,;\#'~])+
+    (unicode / [a-zA-Z0-9\-:!,;\#'~])+
   end
 
   rule unicode
-    [\u0080-\u{10FFFF}]
+    ![\u{a0}] [\u0080-\u{10FFFF}]
   end
 
   rule separator
-    ('. ' / ' .' / ' _' / '_ ' / ' ' / '_')+
+    ([\u{a0}] / '. ' / ' .' / ' _' / '_ ' / ' ' / '_')+
   end
 
   rule serial_separator

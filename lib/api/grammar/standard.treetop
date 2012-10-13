@@ -24,7 +24,7 @@ grammar Standard
   end
 
   rule serial
-    serial_separator? (volume / episodes) &(meta / crc32)
+    serial_separator? (original_episodes / volume / episodes) &(meta / crc32)
   end
 
   rule meta
