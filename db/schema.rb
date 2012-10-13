@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013142013) do
+ActiveRecord::Schema.define(:version => 20121013180055) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20121013142013) do
   add_index "notifications", ["user_id", "release_id"], :name => "index_notifications_on_user_id_and_release_id", :unique => true
 
   create_table "releasers", :force => true do |t|
-    t.string   "name",       :null => false
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -47,10 +47,10 @@ ActiveRecord::Schema.define(:version => 20121013142013) do
   add_index "releasers", ["name"], :name => "index_releasers_on_name", :unique => true
 
   create_table "releases", :force => true do |t|
-    t.text     "raw",                            :null => false
-    t.integer  "releaser_id",                    :null => false
-    t.integer  "title_id",                       :null => false
-    t.string   "episodes",                       :null => false
+    t.text     "raw",                             :null => false
+    t.integer  "releaser_id",                     :null => false
+    t.integer  "title_id",                        :null => false
+    t.string   "episodes",                        :null => false
     t.string   "extension"
     t.string   "audio"
     t.string   "video"
@@ -59,9 +59,11 @@ ActiveRecord::Schema.define(:version => 20121013142013) do
     t.string   "volume"
     t.string   "source"
     t.string   "media"
-    t.boolean  "delta",       :default => false, :null => false
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.boolean  "delta",        :default => false, :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.string   "download_url"
+    t.string   "details_url"
   end
 
   add_index "releases", ["releaser_id", "title_id"], :name => "index_releases_on_releaser_id_and_title_id", :unique => true
@@ -79,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20121013142013) do
   add_index "subscriptions", ["releaser_id"], :name => "index_subscriptions_on_releaser_id"
   add_index "subscriptions", ["title_id"], :name => "index_subscriptions_on_title_id"
   add_index "subscriptions", ["user_id", "title_id", "releaser_id"], :name => "index_subscriptions_on_user_id_and_title_id_and_releaser_id", :unique => true
+  add_index "subscriptions", ["user_id", "title_id"], :name => "index_subscriptions_on_user_id_and_title_id"
   add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
 
   create_table "titles", :force => true do |t|
