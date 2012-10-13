@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Anyfier::Application.load_tasks
+Anifier::Application.load_tasks
