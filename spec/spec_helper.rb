@@ -9,6 +9,11 @@ require_relative '../lib/api/release'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+Bundler.require(:api)
+Dir[Rails.root.join('lib/api/grammar/**/*.treetop')].each do |grammar|
+  Treetop.load grammar.gsub(/\.treetop$/, '')
+end
+
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_base_class_for_anonymous_controllers = false
