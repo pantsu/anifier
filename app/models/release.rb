@@ -1,4 +1,6 @@
 class Release < ActiveRecord::Base
+  attr_protected
+
   belongs_to :releaser
   belongs_to :title
 
