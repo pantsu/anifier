@@ -1,8 +1,5 @@
 class API::Grabber
 
-  class EmptyFeedException < StandardError
-  end
-
   def initialize(url)
     @url = url
     @parser = StandardParser.new
