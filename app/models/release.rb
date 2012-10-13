@@ -26,7 +26,7 @@ class Release < ActiveRecord::Base
         if k.to_s.in?(attributes)
           release[k] = v
         elsif (key = k.to_s.foreign_key).in?(attributes)
-          release[key] = k.to_s.classify.constantize.first_or_create(name: v).id
+          release[key] = k.to_s.classify.constantize.with_name(v).first_or_create.id
         else
           raise ActiveRecord::UnknownAttributeError, "Unknown attribute: #{k.inspect}"
         end

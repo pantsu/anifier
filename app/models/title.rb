@@ -6,4 +6,6 @@ class Title < ActiveRecord::Base
   has_many :users, through: :subscriptions, uniq: true
 
   validates :name, uniqueness: true
+
+  scope :with_name, ->(name){ where(name: name) }
 end
