@@ -12,8 +12,12 @@ gem 'draper'
 gem 'slim'
 gem 'thinking-sphinx'
 gem 'unicorn'
-gem 'feedzirra'
 gem 'jquery-rails'
+
+group :api do
+  gem 'feedzirra'
+  gem 'treetop'
+end
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

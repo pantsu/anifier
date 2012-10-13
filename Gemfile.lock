@@ -275,5 +275,6 @@ DEPENDENCIES
   slim
   thinking-sphinx
   timecop
+  treetop
   uglifier (>= 1.0.3)
   unicorn
