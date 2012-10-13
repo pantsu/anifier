@@ -16,23 +16,23 @@ grammar Standard
   end
 
   rule title
-    (!serial (separator+ / word / [\(\)\[\]]))+ {
+    (!serial (separator / word / round_braces / square_braces))+ {
       def content
-        [:title, text_value.strip]
+        [:title, text_value.gsub(/(\s_)+/, " ").strip]
       end
     }
   end
 
   rule serial
-    [-\#]? (volume / episodes)
+    serial_separator? (volume / episodes) &(meta / crc32)
   end
 
   rule meta
-    !crc32 ('[' metadata ']' / '(' metadata ')')
+    !crc32 ('[' (metadata / round_braces)* ']' / '(' (metadata / square_braces)* ')')
   end
 
   rule metadata
-    (codec_combo / codec_audio / codec_video / media / resolution / word / separator)*
+    codec_combo / codec_audio / codec_video / media / resolution / word / separator
   end
 
   rule crc32

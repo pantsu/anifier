@@ -6,7 +6,7 @@ grammar Media
       [dD] [vV] [dD] _separator? ([rR] [iI] [pP])?
     ) {
       def content
-        [:media, text_value.downcase]
+        [:media, text_value.strip.downcase]
       end
     }
   end
@@ -14,11 +14,11 @@ grammar Media
   rule codec_video
     ( [xhH] '264' /
       [xX] [vV] [iI] [dD] /
-      [dD] [iI] [vV] [xX] /
+      [dD] [iI] [vV] [xX] [\d]? /
       [mM] [pP] [eE] [gG] [2] /
       [wW] [mM] [vV] [9]) {
         def content
-          [:video, text_value.downcase]
+          [:video, text_value.strip.downcase]
         end
       }
   end

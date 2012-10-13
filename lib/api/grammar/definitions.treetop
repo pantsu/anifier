@@ -60,7 +60,19 @@ grammar Definitions
   end
 
   rule separator
-    ('. ' / ' ' / '_')+
+    ('. ' / ' _' / ' ' / '_')+
+  end
+
+  rule serial_separator
+    '-' / '#'
+  end
+
+  rule round_braces
+    '(' / ')'
+  end
+
+  rule square_braces
+    '[' / ']'
   end
 
   rule sequence

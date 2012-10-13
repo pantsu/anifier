@@ -120,18 +120,61 @@ describe 'StandardParser' do
       @raw = "[Howard] Oretachi ni Tsubasa wa Nai - Vol. 06 [BD 720p Vorbis]"
       subject.audio.should == 'vorbis'
     end
+  end
 
-    it "even able to parse tsundere releases O_O" do
-      @raw = "[TSuNDeRe]Needless. 02. [BDRip. h264. 1920x1080. Vorbis][73176703].mkv"
-      subject.releaser.should == 'TSuNDeRe' # gomenasai
-      subject.title.should == 'Needless'    # gomenasai
-      subject.episodes.should == '02'       # gomenasai
-      subject.media.should == 'bdrip'       # gomenasai
-      subject.video.should == 'h264'        # gomenasai
-      subject.audio.should == 'vorbis'      # gomenasai
-      subject.resolution.should == '1080'   # gomenasai
-      subject.crc32.should == '73176703'    # gomenasai
+  describe "detecting video codec" do
+    it "is able to detect an H264 video codec" do
+      @raw = "[SakuraCircle] Acchi Kocchi - 06 [H264] [BD 1920x1080] [FLAC] [391205F3].mkv"
+      subject.video.should == 'h264'
+    end
+
+    it "is able to detect an X264 video codec" do
+      @raw = "[바카-Raws]_Busou_Shinki_#02_(TBS_1280x720_x264_AAC).mp4"
+      subject.video.should == 'x264'
+    end
+
+    it "is able to detect an XviD video codec" do
+      @raw = "[UTW]_Shinsekai_Yori_-_03_[XviD][4B25563E].avi"
+      subject.video.should == 'xvid'
+    end
+
+    it "is able to detect an DivX6 video codec" do
+      @raw = "[MDW] _Persona _4 _- _24 _[SD][DivX][ITA][6B69DA0D].avi"
+      subject.video.should == 'divx'
+    end
+
+    it "is able to detect an DivX6 video codec" do
+      @raw = "[MDW] Winter Sonata - 25 [SD][648x400][DivX6][ITA].avi"
+      subject.video.should == 'divx6'
+    end
+
+    it "is able to detect an MPEG2 video codec" do
+      @raw = "[Leopard-Raws] Phi Brain Puzzle of God - 01 (NHK-E 1440x1080 MPEG2 AAC).ts"
+      subject.video.should == 'mpeg2'
     end
   end
 
+  it "is able to handle nested brases" do
+    @raw = "[SakuraCircle] Acchi Kocchi - 06 [H264] [BD 1920x1080 (whatever)] [FLAC] [391205F3].mkv"
+    subject.releaser.should == 'SakuraCircle'
+    subject.title.should == 'Acchi Kocchi'
+    subject.episodes.should == '06'
+    subject.media.should == 'bd'
+    subject.video.should == 'h264'
+    subject.audio.should == 'flac'
+    subject.resolution.should == '1080'
+    subject.crc32.should == '391205f3'
+  end
+
+  it "is even able to parse tsundere releases O_O" do
+    @raw = "[TSuNDeRe]Needless. 02. [BDRip. h264. 1920x1080. Vorbis][73176703].mkv"
+    subject.releaser.should == 'TSuNDeRe' # gomenasai
+    subject.title.should == 'Needless'    # gomenasai
+    subject.episodes.should == '02'       # gomenasai
+    subject.media.should == 'bdrip'       # gomenasai
+    subject.video.should == 'h264'        # gomenasai
+    subject.audio.should == 'vorbis'      # gomenasai
+    subject.resolution.should == '1080'   # gomenasai
+    subject.crc32.should == '73176703'    # gomenasai
+  end
 end
