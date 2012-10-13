@@ -1,0 +1,45 @@
+grammar Media
+
+  rule media
+    separator* (
+      [bB] [dD] _separator? ([dD] [iI] [sS] [cC])? /
+      [bB] [lL] [uU] _separator? [rR] [aA] [yY] /
+      [dD] [vV] [dD] _separator? ([rR] [iI] [pP])?
+    ) separator* {
+      def content
+        [:media, text_value.strip]
+      end
+    }
+  end
+
+  rule codec_video
+    ( [xhH] '264' /
+      [xX] [vV] [iI] [dD] /
+      [dD] [iI] [vV] [xX] /
+      [mM] [pP] [eE] [gG] [2]) {
+        def content
+          [:video, text_value.downcase]
+        end
+      }
+  end
+
+  rule codec_audio
+    ( [fF] [lL] [aA] [cC] /
+      [aA] [aA] [cC] /
+      [oO] [gG] [gG] /
+      [vV] [oO] [rR] [bB] [iI] [sS]) {
+        def content
+          [:audio, text_value.downcase]
+        end
+      }
+  end
+
+  rule codec_combo
+    (codec_video '+' codec_audio / codec_audio '+' codec_video)
+  end
+
+  rule _separator
+    [\s\_\-\.]
+  end
+
+end

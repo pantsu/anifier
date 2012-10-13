@@ -27,10 +27,18 @@ grammar Definitions
     }
   end
 
-  rule episodes
-    separator* digits ('-' digits)? version? separator* {
+  rule volume
+    separator* ([vV] ([oO] [lL])? / [dD] [iI] [sS] [cC]) (separator+ / '.' / '') digits separator* {
       def content
-        [:episode, elements[1..-2].map(&:text_value).join]
+        [:volume, elements[-2].text_value]
+      end
+    }
+  end
+
+  rule episodes
+    separator* digits ([\-~] digits)? version? separator* {
+      def content
+        [:episodes, elements[1..-2].map(&:text_value).join]
       end
     }
   end
@@ -44,7 +52,7 @@ grammar Definitions
   end
 
   rule word
-    (unicode / [a-zA-Z0-9\-,;#\.])+
+    (unicode / [a-zA-Z0-9\-\:\!,;#\.\'])+
   end
 
   rule unicode
@@ -56,7 +64,7 @@ grammar Definitions
   end
 
   rule digits
-    [\d]+
+    [0-9]+
   end
 
 end
