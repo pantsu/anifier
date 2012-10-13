@@ -12,6 +12,9 @@ class CreateReleases < ActiveRecord::Migration
       t.string :crc32
       t.string :volume
       t.string :source
+      t.string :media
+      t.boolean :delta, default: false, null: false
+
 
       t.timestamps
     end

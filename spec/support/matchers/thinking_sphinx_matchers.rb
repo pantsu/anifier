@@ -5,7 +5,7 @@ module ThinkingSphinxMatchers
   end
 
   module Helpers
-    def have_search_index_for(*args)
+      def have_search_index_for(*args)
       ThinkingSphinxMatchers::HaveColumnMatcher.new(:fields, *args)
     end
 
