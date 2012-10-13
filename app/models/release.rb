@@ -1,12 +1,15 @@
 class Release < ActiveRecord::Base
+
+  ## included modules and attr_*
+
   attr_protected
+
+  ## associations
 
   belongs_to :releaser
   belongs_to :title
 
-  validates :raw, :title_id, :releaser_id, :episodes, presence: true
-  validates :raw, uniqueness: true
-  validates :title_id, uniqueness: { scope: :releaser_id }
+  ## plugins
 
   define_index :releases do
     indexes title(:name), as: :title, sortable: true
@@ -21,6 +24,14 @@ class Release < ActiveRecord::Base
     set_property delta: true
   end
 
+  ## validations
+
+  validates :raw, :title_id, :releaser_id, :episodes, presence: true
+  validates :raw, uniqueness: true
+  validates :title_id, uniqueness: { scope: :releaser_id }
+
+  ## class-methods
+
   delegate :name, to: :title, prefix: true
   delegate :name, to: :releaser, prefix: true
 
@@ -29,18 +40,18 @@ class Release < ActiveRecord::Base
   end
 
   def self.import(data)
-    attributes = columns_hash.keys
     create do |release|
       data.to_hash.each do |k,v|
-        if k.to_s.in?(attributes)
+        if columns_hash.key?(k.to_s)
           release[k] = v
-        elsif (key = k.to_s.foreign_key).in?(attributes)
-          release[key] = k.to_s.classify.constantize.with_name(v).first_or_create.id
+        elsif r = reflections[k]
+          release[r.foreign_key] = r.klass.with_name(v).first_or_create.id
         else
           raise ActiveRecord::UnknownAttributeError, "Unknown attribute: #{k.inspect}"
         end
       end
     end
+  # @todo: handle pg exception
   rescue ActiveRecord::RecordNotUnique
   end
 

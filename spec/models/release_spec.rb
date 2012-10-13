@@ -18,7 +18,7 @@ describe Release do
     end
   end
 
-  describe "::import" do
+  describe ".import" do
     subject { Release }
     let(:attributes) { API::RELEASE_ATTRIBUTES.inject({}) { |hsh, attr| hsh[attr] = attr; hsh } }
 
@@ -39,11 +39,11 @@ describe Release do
     end
 
     %w(title releaser).each do |assoc|
-      it "creates new #{assoc} is there is no needed one" do
+      it "creates a new #{assoc.classify} if there is no needed one" do
         expect { subject.import(attributes) }.to change(assoc.classify.constantize, :count).by(1)
       end
 
-      it "does not create new #{assoc} if the one needed is already present" do
+      it "does not create a new #{assoc.classify} if the one needed is already present" do
         klass = assoc.classify.constantize
         klass.create(name: assoc)
         expect { subject.import(attributes) }.to_not change(klass, :count).by(1)
