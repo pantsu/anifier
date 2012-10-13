@@ -23,5 +23,9 @@ module API
     def to_hash
       Hash[*members.zip(values).flatten]
     end
+
+    def valid?
+      releaser.present? && title.present? && (episodes.present? || volume.present?)
+    end
   end
 end
