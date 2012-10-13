@@ -9,10 +9,10 @@ class Notification
   private
 
   def self.exists?(args)
-    Rails.redis.sismember(args[:release_id], args[:user_id])
+    Rails.redis.sismember("release-#{args[:release_id]}", args[:user_id])
   end
 
   def self.add(args)
-    Rails.redis.sadd(args[:release_id], args[:user_id])
+    Rails.redis.sadd("release-#{args[:release_id]}", args[:user_id])
   end
 end
