@@ -4,9 +4,6 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile ~/.gitignore_global
 
-# Ignore bundler config
-/.bundle
-
 # Ignore the default SQLite database.
 /db/*.sqlite3
 
@@ -22,8 +19,6 @@ config/*.conf
 config/sphinx.yml
 config/database.yml
 db/sphinx/
-db/schema.rb
-db/structure.sql
 public/assets/*
 Thumbs.db
 tmp/*
