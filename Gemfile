@@ -47,4 +47,5 @@ group :development, :test do
   gem 'timecop'
   gem 'pry'
   gem 'pry-debugger'
+  gem 'sqlite3'
 end
