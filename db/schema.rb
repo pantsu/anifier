@@ -81,7 +81,6 @@ ActiveRecord::Schema.define(:version => 20121013180055) do
   add_index "subscriptions", ["releaser_id"], :name => "index_subscriptions_on_releaser_id"
   add_index "subscriptions", ["title_id"], :name => "index_subscriptions_on_title_id"
   add_index "subscriptions", ["user_id", "title_id", "releaser_id"], :name => "index_subscriptions_on_user_id_and_title_id_and_releaser_id", :unique => true
-  add_index "subscriptions", ["user_id", "title_id"], :name => "index_subscriptions_on_user_id_and_title_id"
   add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
 
   create_table "titles", :force => true do |t|
