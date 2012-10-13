@@ -1,18 +1,23 @@
 class Notification
-  def self.deliver(user_id, release_id)
-    unless exists?(release_id, user_id)
-      UserMailer.delay.new_release(User.find(user_id), Release.find(release_id))
-      add(release_id, user_id)
-    end
+
+  def initialize(release)
+    @release = release
+  end
+
+  def deliver_to(user)
+    return true if delivered_to?(user.id) # already delivered
+    UserMailer.delay.new_release(user, @release)
+    add(user.id)
+  end
+
+  def delivered_to?(user_id)
+    Rails.redis.sismember("release-#{@release.id}", user_id)
   end
 
   private
 
-  def self.exists?(release_id, user_id)
-    Rails.redis.sismember("release-#{release_id}", user_id)
+  def add(user_id)
+    Rails.redis.sadd("release-#{@release.id}", user_id)
   end
 
-  def self.add(release_id, user_id)
-    Rails.redis.sadd("release-#{release_id}", user_id)
-  end
 end

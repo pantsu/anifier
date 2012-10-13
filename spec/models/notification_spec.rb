@@ -2,61 +2,63 @@ require 'spec_helper'
 
 describe Notification do
 
-  subject { Notification }
-
   before { UserMailer.stub(delay: UserMailer) }
   after  { Rails.redis.del('release-1') }
 
-  describe "::deliver" do
-    let(:user)    { create(:user) }
-    let(:release) { create(:release) }
+  let(:release) { create(:release) }
+
+  subject { Notification.new(release) }
+
+  describe "::deliver_to" do
+
+    let(:user) { create(:user) }
 
     context "unless notification exists" do
       it "sends new release email" do
         UserMailer.should_receive(:new_release).with(user, release)
-        subject.deliver(user.id, release.id)
+        subject.deliver_to(user)
       end
 
       it "adds notification" do
-        subject.should_receive(:add).with(release.id, user.id)
-        subject.deliver(user.id, release.id)
+        subject.should_receive(:add).with(user.id)
+        subject.deliver_to(user)
       end
     end
 
     context "if notification exists" do
-      before { subject.send(:add, release.id, user.id)}
+      before { subject.send(:add, user.id)}
 
       it "does not send new release email" do
         UserMailer.should_not_receive(:new_release).with(user, release)
-        subject.deliver(user.id, release.id)
+        subject.deliver_to(user)
       end
 
       it "does not add notification" do
-        subject.should_not_receive(:add).with(release.id, user.id)
-        subject.deliver(user.id, release.id)
+        subject.should_not_receive(:add).with(user.id)
+        subject.deliver_to(user)
       end
     end
   end
 
-  describe "::exists?" do
+  describe ".deliver_toed_to?" do
     it "returns true if user is in the set" do
-      subject.send(:add, 1, 1)
-      subject.send(:exists?, 1, 1).should be_true
+      subject.send(:add, 1)
+      subject.send(:delivered_to?, 1).should be_true
     end
 
     it "returns false if user is not in the set" do
-      subject.send(:exists?, 1, 1).should be_false
+      subject.send(:delivered_to?, 0).should be_false
     end
   end
 
-  describe "::add" do
+  describe ".add" do
     it "returns true if user added to release set" do
-      subject.send(:add, 1, 1).should be_true
+      subject.send(:add, 1).should be_true
     end
 
     it "returns false if key is already in the set" do
-      subject.send(:add, 1, 1)
-      subject.send(:add, 1, 1).should be_false
+      subject.send(:add, 1)
+      subject.send(:add, 1).should be_false
     end
   end
 end

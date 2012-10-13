@@ -3,7 +3,7 @@ class ReleaseObserver < ActiveRecord::Observer
 
   def after_create(release)
     Subscription.for_title(release.title_id).for_releaser(release.releaser_id).find_each do |subscription|
-      Notification.deliver(subscription.user_id, release.id)
+      Notification.new(release).deliver_to(subscription.user)
     end
   end
 end
