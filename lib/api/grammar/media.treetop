@@ -1,13 +1,12 @@
 grammar Media
 
   rule media
-    separator* (
-      [bB] [dD] _separator? ([dD] [iI] [sS] [cC])? /
+    ( [bB] [dD] _separator? ([dD] [iI] [sS] [cC] / [rR] [iI] [pP])? /
       [bB] [lL] [uU] _separator? [rR] [aA] [yY] /
       [dD] [vV] [dD] _separator? ([rR] [iI] [pP])?
-    ) separator* {
+    ) {
       def content
-        [:media, text_value.strip]
+        [:media, text_value.downcase]
       end
     }
   end

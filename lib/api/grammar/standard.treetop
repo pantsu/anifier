@@ -16,15 +16,15 @@ grammar Standard
   end
 
   rule title
-    (!serial word / separator+ / [\(\)\[\]])+ {
+    (!serial (separator+ / word / [\(\)\[\]]))+ {
       def content
-        [:title, text_value.strip.gsub('_', ' ')]
+        [:title, text_value.strip]
       end
     }
   end
 
   rule serial
-    [-#]? (volume / episodes)
+    [-\#]? (volume / episodes)
   end
 
   rule meta

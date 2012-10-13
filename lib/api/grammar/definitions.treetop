@@ -52,7 +52,7 @@ grammar Definitions
   end
 
   rule word
-    (unicode / [a-zA-Z0-9\-\:\!,;#\.\'\~])+
+    !separator (unicode / [a-zA-Z0-9\-:!,;\#'~])+
   end
 
   rule unicode
@@ -60,7 +60,7 @@ grammar Definitions
   end
 
   rule separator
-    [\s_]
+    ('. ' / ' ' / '_')+
   end
 
   rule sequence

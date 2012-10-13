@@ -120,6 +120,18 @@ describe 'StandardParser' do
       @raw = "[Howard] Oretachi ni Tsubasa wa Nai - Vol. 06 [BD 720p Vorbis]"
       subject.audio.should == 'vorbis'
     end
+
+    it "even able to parse tsundere releases O_O" do
+      @raw = "[TSuNDeRe]Needless. 02. [BDRip. h264. 1920x1080. Vorbis][73176703].mkv"
+      subject.releaser.should == 'TSuNDeRe' # gomenasai
+      subject.title.should == 'Needless'    # gomenasai
+      subject.episodes.should == '02'       # gomenasai
+      subject.media.should == 'bdrip'       # gomenasai
+      subject.video.should == 'h264'        # gomenasai
+      subject.audio.should == 'vorbis'      # gomenasai
+      subject.resolution.should == '1080'   # gomenasai
+      subject.crc32.should == '73176703'    # gomenasai
+    end
   end
 
 end
