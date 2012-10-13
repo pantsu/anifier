@@ -13,13 +13,11 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
   config.order = "random"
 
-  config.include Devise::TestHelpers,   type: :controller
-  config.include Devise::TestHelpers,   type: :helper
-  config.include Warden::Test::Helpers, type: :request
-  config.include ApplicationHelper,     type: :helper
-  config.include ApplicationHelper,     type: :request
-  config.include Spec::DeviseHelpers
-  config.include Spec::FactoryHelpers
+  config.include Devise::TestHelpers,    type: :controller
+  config.include Devise::TestHelpers,    type: :helper
+  config.include Warden::Test::Helpers,  type: :request
+  config.include ApplicationHelper,      type: :helper
+  config.include ApplicationHelper,      type: :request
   config.include ThinkingSphinxMatchers, type: :model
   config.include FactoryGirl::Syntax::Methods
 
@@ -27,7 +25,7 @@ RSpec.configure do |config|
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true
 
-  сщтаig.before(:each) do
+  config.before(:each) do
     Warden.test_mode!
   end
 
