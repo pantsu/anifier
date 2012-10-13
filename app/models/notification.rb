@@ -1,7 +1,7 @@
 class Notification
   def self.deliver(user_id, release_id)
-    unless Notification.exists?(release_id: release_id, user_id: user_id)
-      UserMailer.delay.new_release(user, release)
+    unless exists?(release_id: release_id, user_id: user_id)
+      UserMailer.delay.new_release(User.find(user_id), Release.find(release_id))
       add(user_id: user_id, release_id: release_id)
     end
   end
