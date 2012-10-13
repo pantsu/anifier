@@ -4,7 +4,7 @@ class Release < ActiveRecord::Base
   belongs_to :releaser
   belongs_to :title
 
-  validates :raw, :title_id, :episode, presence: true
+  validates :raw, :title_id, :episodes, presence: true
   validates :raw, uniqueness: true
 
   define_index :releases do
