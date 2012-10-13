@@ -21,7 +21,8 @@ class Release < ActiveRecord::Base
     set_property delta: true
   end
 
-  delegate :name, :to => :title, :prefix => true
+  delegate :name, to: :title, prefix: true
+  delegate :name, to: :releaser, prefix: true
 
   def self.from_feed(url)
     API::Grabber.new(url).releases.each { |data| import(data) }

@@ -13,7 +13,7 @@ describe 'ActiveRecordExt' do
       subject.for_user(n.user).for_release(n.release).should == [n]
     end
 
-    it "does ids passed" do
+    it "when ids passed" do
       subject.for_user(n.user_id).for_release(n.release_id).should == [n]
     end
   end
