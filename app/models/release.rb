@@ -6,6 +6,7 @@ class Release < ActiveRecord::Base
 
   validates :raw, :title_id, :releaser_id, :episodes, presence: true
   validates :raw, uniqueness: true
+  validates :title_id, uniqueness: { scope: :releaser_id }
 
   define_index :releases do
     indexes audio, video, media # @todo: checkme. ts may be buggy with MVA.
