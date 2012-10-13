@@ -1,0 +1,9 @@
+= simple_form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal' } do |f|
+  = f.input :email
+  = f.input :password
+  = f.input :remember_me
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), root_path, :class => 'btn'
+
+  / = render "devise/shared/links"

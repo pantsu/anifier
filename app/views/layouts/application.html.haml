@@ -18,7 +18,7 @@
 
 
   %body
-    / = render 'shared/navbar'
+    = render 'shared/navbar'
 
     .container
 
@@ -28,6 +28,8 @@
             = yield
 
     = render 'shared/footer'
+
+    = render 'shared/auth' unless user_signed_in?
     /
       Javascripts
       \==================================================

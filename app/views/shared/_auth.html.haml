@@ -1,0 +1,19 @@
+#sign-in-modal.modal.hide.fade
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+    %h3 Welcome to Anifier
+  .modal-body
+    #auth-tabs.tabbable
+      %ul.nav.nav-tabs
+        %li.active
+          %a{ data: { toggle: "tab", target: "#sign_in" }} Sign in
+        %li
+          %a{ data: { toggle: "tab", target: "#sign_up" }} Sign up
+      .tab-content
+        #sign_in.tab-pane.active.fade.in
+          = render template: "devise/sessions/new"
+        #sign_up.tab-pane.fade
+          = render template: "devise/registrations/new"
+
+  .modal-footer
+    / = render "users/links"
