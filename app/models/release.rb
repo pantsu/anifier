@@ -28,6 +28,17 @@ class Release < ActiveRecord::Base
     set_property delta: true
   end
 
+  ## sphinx scopes
+
+  sphinx_scope(:by_relevance)  {{:order => '@relevance DESC'}}
+
+  sphinx_scope(:by_phrase)     {{:match_mode => :phrase}}
+  sphinx_scope(:by_all_words)  {{:match_mode => :all}}
+  sphinx_scope(:by_any_word)   {{:match_mode => :any}}
+
+  sphinx_scope(:with_audio)    { |audio| {:with => {:audio => audio.to_s.downcase.to_crc32}}}
+  sphinx_scope(:with_video)    { |video| {:with => {:video => video.to_s.downcase.to_crc32}}}
+
   ## validations
 
   validates :raw, :title_id, :releaser_id, :episodes, presence: true
