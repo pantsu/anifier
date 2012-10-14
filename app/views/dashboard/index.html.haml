@@ -32,7 +32,7 @@
         %h2 Fuck your list, I will construct myself!
         = form_tag "#", class: "dashboard-unit-inner .form-inline" do
           = select :releaser, "id", @releasers.collect {|r| [r.name, r.id]}, include_blank: 'Releaser'
-          = autocomplete_field_tag :brand_name, nil, autocomplete_title_name_titles_path, placeholder: "Title (autocomplete)"
+          = autocomplete_field_tag :title, nil, autocomplete_title_name_titles_path, placeholder: "Title (autocomplete)"
           = select "resolution", "resolution", @resolutions, include_blank: 'Resolution'
           = submit_tag "Construct!", class: "btn btn-inverse dashboard-submit"
 
