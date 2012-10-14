@@ -24,14 +24,18 @@
               %h3= "#{t.name} releasers"
               %ul.unstyled.sub-unsub
                 - t.releasers.each do |r|
-                  %li{ data: { title_id: r.id }}
+                  %li
                     - if current_user.releasers.include?(r)
-                      %button.btn.btn-danger.btn-mini.fade{ data: { action: 'Unsubscribe', instance_id: r.id, instance_class: r.class, 'original-title' => t('unsubscribe')}}
-                        %i.icon-minus
+                      - s = current_user.subscriptions.keep_if{|s| s.releaser_id == r.id }.first
+                      - if s.present?
+                        %button.btn.btn-danger.btn-mini.fade{ data: { action: 'unsubscribe', subscription_id: s.id, url: subscription_path(s), 'original-title' => 'Unsubscribe'}}
+                          %i.icon-minus
+
                       &nbsp;
                       %span.text-success= r.name
                     - else
-                      %button.btn.btn-success.btn-mini.fade{ data: { action: 'Subscribe', instance_id: r.id, instance_class: r.class, 'original-title' => t('subscribe')}}
+                      %button.btn.btn-success.btn-mini.fade{ data: { action: 'subscribe', releaser_id: r.id, title_id: nil, url: subscriptions_path, 'original-title' => t('subscribe')}}
                         %i.icon-plus
                       &nbsp;
                       = r.name
+

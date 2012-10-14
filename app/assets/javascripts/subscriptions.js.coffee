@@ -38,8 +38,8 @@ $ ->
       dataType: 'json'
       beforeSend: () -> lockButton $button
       success: (data) ->
-        console.log data.url
-        unsubscribeButton $button, data.url
+        # console.log data.url
+        # unsubscribeButton $button, data.url
         $button.parent().append "
           <span class='text-success'>
             Subscribed!
@@ -52,7 +52,7 @@ $ ->
             <strong>#{jqXHR.status}:&nbsp;</strong>
             #{errorThrown}
           </span>"
-      complete: () -> unlockButton $button
+      # complete: () -> unlockButton $button
 
   $('.sub-unsub').on 'click', "[data-action='unsubscribe']", (event) ->
     $button = $(@)
@@ -66,7 +66,7 @@ $ ->
       data: data
       dataType: 'json'
       beforeSend: () -> lockButton $button
-      complete: () -> unlockButton $button
+      # complete: () -> unlockButton $button
       success: (data) ->
         $button.parent().append "
           <span class='text-info'>
@@ -74,8 +74,8 @@ $ ->
           </span>"
         if $('#subscriptions').length > 0
           setTimeout((-> $button.closest('li').fadeOut(300)), 1500)
-        else
-          subscribeButton $button, data.url
+        # else
+          # subscribeButton $button, data.url
       error: (jqXHR, textStatus, errorThrown) ->
         unsubscribeButton $button
         $button.parent().append "
