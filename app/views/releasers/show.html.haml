@@ -4,6 +4,8 @@
       .dashboard-unit-inner
         %h2= @releaser.name_with_link
         %p= @releaser.description
-  .row
-    .dashboard-unit.span6= render "shared/subscriptions", subscriptions: @subscriptions
-    .dashboard-unit.span6.pull-right= render "shared/new_releases", releases: @releaser.releases
+
+  - if user_signed_in?
+    .row
+      .dashboard-unit.span6= render "shared/subscriptions", subscriptions: @subscriptions
+      .dashboard-unit.span6.pull-right= render "shared/new_releases", releases: @releaser.releases

@@ -8,6 +8,6 @@ class ReleasersController < ApplicationController
 
   def show
     @releaser = @releaser.decorate
-    @subscriptions = current_user.subscriptions.for_releaser(@releaser)
+    @subscriptions = current_user.subscriptions.for_releaser(@releaser) if user_signed_in?
   end
 end
