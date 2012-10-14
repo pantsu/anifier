@@ -15,6 +15,7 @@ gem 'jquery-rails'
 gem 'redis'
 gem 'hiredis'
 gem 'redis-namespace'
+gem 'kaminari'
 
 # gem 'slim'
 gem 'haml-rails'
