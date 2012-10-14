@@ -3,8 +3,8 @@
   %ul.unstyled.sub-unsub
     - releases.each do |r|
       %li
-        = r.decorate.full_title
-        &nbsp;
         %button.btn.btn-success.btn-mini.fade{ data: { action: 'subscribe', title_id: r.title.id, releaser_id: r.releaser.id, url: subscriptions_path, 'original-title' => t('subscribe')}}
           %i.icon-plus
+        &nbsp;
+        = r.decorate.full_title
 
