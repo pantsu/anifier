@@ -28,3 +28,10 @@ en:
   title_autocomplete: "Title (autocomplete)"
   resolution: "Resolution"
   search_results: "Search results"
+  subscriptions:
+    create:
+      success: "Successfully subscribed!"
+      failure: "Cannot subscribe, sorry."
+    destroy:
+      success: "Successfully unsubscribed!"
+      failure: "You MUST watch it! (unsubscription failed, sorry)."
