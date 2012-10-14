@@ -50,4 +50,20 @@ describe Release do
       end
     end
   end
+
+  context "decorated" do
+    describe "#issue" do 
+      it "uses both volume and episode, if possible" do
+        build_stubbed(:release, volume: "3", episodes: "12-15").decorate.issue.should == "vol. 3, ep. 12-15"
+      end
+
+      it "uses volume when volume is not blank and episodes are not specified" do
+        build_stubbed(:release, volume: "3", episodes: nil).decorate.issue.should == "vol. 3"
+      end
+
+      it "uses episodes when episodes are not blank and volume is not specified" do
+        build_stubbed(:release, volume: nil, episodes: "12-15").decorate.issue.should == "ep. 12-15"
+      end
+    end
+  end
 end
