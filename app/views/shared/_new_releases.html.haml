@@ -1,4 +1,4 @@
-%h2 Brand new
+%h2= t('brand_new')
 = form_tag subscriptions_path, method: :post, class: "dashboard-unit-inner" do
   - releases.each do |r|
     = label_tag "release_ids[#{r.id}]", class: "checkbox" do

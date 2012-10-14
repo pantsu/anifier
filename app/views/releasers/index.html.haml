@@ -5,4 +5,4 @@
     .dashboard-unit.span8.offset2
       %ul.nav.nav-pills.nav-stacked.dashboard-unit-inner
         - @releasers.each do |r|
-          %li= link_to(t('.releaser', name: r.name), releaser_path(r))
+          %li= link_to(t('releaser', name: r.name), releaser_path(r))

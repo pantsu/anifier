@@ -1,10 +1,10 @@
 .span5
-  %h3 Latest releases
+  %h3= t('latest_releases')
   %ul
     - @releases.each do |r|
       %li= r.decorate.full_title
 .span5
-  %h3 Some random releasers
+  %h3= t('random_releases')
   %ul
     - @releasers.each do |r|
       %li= r.name

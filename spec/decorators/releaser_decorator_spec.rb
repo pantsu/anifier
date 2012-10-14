@@ -14,7 +14,7 @@ describe ReleaserDecorator do
   end
 
   describe "#name_with_link" do
-    its(:name_with_link) { should == I18n.t('releasers.show.releaser', name: releaser.name) }
+    its(:name_with_link) { should == I18n.t('releaser', name: releaser.name) }
 
     specify do
       releaser.url = 'http://bogus.com'

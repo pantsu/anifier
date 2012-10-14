@@ -9,20 +9,15 @@ en:
   created: "Successfully created"
   updated: "Successfully updated"
   detroyed: "Successfully deleted"
-
-  releasers:
-    show:
-      releaser: "Releaser %{name}"
-  admin:
-    releasers:
-      edit:
-        delete: "delete"
-  releasers:
-    show:
-      releaser: "Releaser %{name}"
-    index:
-      releaser: "Releaser %{name}"
-  active_record:
-    attributes:
-      releaser:
-        no_description: "No description"
+  welcome: "Welcome to Anifier"
+  project_title: "Anifier"
+  delete: "delete"
+  releaser: "Releaser %{name}"
+  releasers: "Releasers"
+  no_description: "No description"
+  latest_releases: "Latest releases"
+  random_releases: "Some random releasers"
+  brand_new: "Brand new"
+  watched: "Watched"
+  no_subscriptions: "You don't have any subscriptions yet."
+  subscribe_latest: "Subscribe to latest releases by checking them in nearby box or choose %{releasers} or %{titles} you want to be notified about."

@@ -1,12 +1,12 @@
 .navbar.navbar-fixed-top
   .navbar-inner
     .container
-      = link_to 'Anifier', root_path, class: 'brand'
+      = link_to t('project_title'), root_path, class: 'brand'
       - if user_signed_in?
         %ul.nav
-          %li= link_to "Releasers", releasers_path
-          %li= link_to "Now airing", "#"
-          %li= link_to "History", "#"
+          %li= link_to t('releasers'), releasers_path
+          / %li= link_to "Now airing", "#"
+          / %li= link_to "History", "#"
 
       .pull-right
         - if user_signed_in?
