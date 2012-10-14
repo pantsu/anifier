@@ -7,9 +7,10 @@
     .row
       .dashboard-unit.construct.span12
         %h2 I know what I'm doing. I will find release myself!
-        = form_tag root_path, method: :get, class: "dashboard-unit-inner .form-inline" do
-          = select_tag :releaser_id, options_from_collection_for_select(@releasers, :id, :name), include_blank: 'Releaser'
-          = autocomplete_field_tag :title, nil, autocomplete_title_name_titles_path, placeholder: t('title_autocomplete')
+        = form_tag construct_subscriptions_path, method: :put, class: "dashboard-unit-inner .form-inline" do
+          = select_tag :releaser_id, options_from_collection_for_select(@releasers, :id, :name, params[:releaser_id].to_s), include_blank: 'Releaser'
+          = hidden_field_tag :title_id
+          = autocomplete_field_tag :title, params[:title], autocomplete_title_name_titles_path, placeholder: t('title_autocomplete'), id_element: '#title_id' 
           = submit_tag "Construct!", class: "btn btn-inverse"
 
 - else

@@ -10,6 +10,19 @@ class SubscriptionsController < ApplicationController
     end
   end
 
+  def construct
+    @subscription = Subscription.new
+    @subscription.user_id     = current_user.id
+    @subscription.releaser_id = params[:releaser_id]
+    @subscription.title_id    = params[:title_id]
+
+    if @subscription.save
+      redirect_to :back, notice: "subscriptions.create.success"
+    else
+      redirect_to :back, notice: "subscriptions.create.failure"
+    end
+  end
+
   def destroy
     @subscription.destroy
     render json: { success: true, notice: t("subscriptions.destroy.success") }

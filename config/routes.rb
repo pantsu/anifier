@@ -11,7 +11,9 @@ Anifier::Application.routes.draw do
     get :autocomplete_title_name, on: :collection
   end
 
-  resources :subscriptions, only: [:create, :destroy]
+  resources :subscriptions, only: [:create, :destroy] do
+    put :construct, on: :collection
+  end
 
   namespace :admin do
     resources :releasers, only: [:index, :edit, :update, :destroy]
