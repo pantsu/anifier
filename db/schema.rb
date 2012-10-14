@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121014134236) do
+ActiveRecord::Schema.define(:version => 20121014142330) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -40,9 +40,9 @@ ActiveRecord::Schema.define(:version => 20121014134236) do
   add_index "releasers", ["name"], :name => "index_releasers_on_name", :unique => true
 
   create_table "releases", :force => true do |t|
-    t.text     "raw",                             :null => false
-    t.integer  "releaser_id",                     :null => false
-    t.integer  "title_id",                        :null => false
+    t.text     "raw",                            :null => false
+    t.integer  "releaser_id",                    :null => false
+    t.integer  "title_id",                       :null => false
     t.string   "episodes"
     t.string   "extension"
     t.string   "audio"
@@ -52,10 +52,9 @@ ActiveRecord::Schema.define(:version => 20121014134236) do
     t.string   "volume"
     t.string   "source"
     t.string   "media"
-    t.boolean  "delta",        :default => false, :null => false
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
-    t.string   "download_url"
+    t.boolean  "delta",       :default => false, :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.string   "details_url"
   end
 
