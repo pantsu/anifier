@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121014070915) do
+ActiveRecord::Schema.define(:version => 20121014102607) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20121014070915) do
   add_index "notifications", ["user_id", "release_id"], :name => "index_notifications_on_user_id_and_release_id", :unique => true
 
   create_table "releasers", :force => true do |t|
-    t.string   "name",        :null => false
+    t.string   "name"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.text     "description"
@@ -106,6 +106,8 @@ ActiveRecord::Schema.define(:version => 20121014070915) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "admin",                  :default => false, :null => false
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
