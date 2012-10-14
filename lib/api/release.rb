@@ -4,7 +4,7 @@ module API
     :raw,
     :releaser, :title, :episodes, :volume,
     :extension, :audio, :video, :media, :resolution, :crc32,
-    :details_url, :download_url]
+    :details_url]
 
   Release = Struct.new(*RELEASE_ATTRIBUTES)
 
