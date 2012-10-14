@@ -1,0 +1,6 @@
+#!/bin/sh
+
+cd ..
+source /usr/local/rvm/scripts/rvm
+rvm default@anifier
+bundle exec rake releases:from_feed RAILS_ENV=production
