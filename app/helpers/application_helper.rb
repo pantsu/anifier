@@ -1,4 +1,8 @@
 module ApplicationHelper
+
+  # Device-IR compat.
+  # @todo: move to locals
+
   def resource_name
     :user
   end
