@@ -21,3 +21,5 @@ en:
   watched: "Watched"
   no_subscriptions: "You don't have any subscriptions yet."
   subscribe_latest: "Subscribe to latest releases by checking them in nearby box or choose %{releasers} or %{titles} you want to be notified about."
+  now_airing: "Now airing"
+  history: "History"

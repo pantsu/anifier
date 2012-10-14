@@ -5,8 +5,8 @@
       - if user_signed_in?
         %ul.nav
           %li= link_to t('releasers'), releasers_path
-          / %li= link_to "Now airing", "#"
-          / %li= link_to "History", "#"
+          %li= link_to t('now_airing'), "#"
+          %li= link_to t('history'), "#"
 
       .pull-right
         - if user_signed_in?
