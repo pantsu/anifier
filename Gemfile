@@ -34,7 +34,6 @@ end
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  # gem 'bootstrap-sass'
   gem 'twitter-bootstrap-rails'
   gem 'chosen-rails'
   gem 'mousetrap-rails'
@@ -54,12 +53,9 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'capybara'
-  gem 'launchy'
   gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'fuubar'
-  gem 'timecop'
   gem 'pry'
   gem 'pry-debugger'
   gem 'sqlite3'
