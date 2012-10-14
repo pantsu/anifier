@@ -27,13 +27,14 @@ class Subscription < ActiveRecord::Base
   validates :releaser_id, uniqueness: { scope: [:user_id, :title_id] }, allow_nil: true
 
   def self.create_for(ids, key, user_id)
-    if key == :release_ids
+    case key
+    when :release_ids
       Release.find(ids).map do |release|
         new(title_id: release.title_id, releaser_id: release.releaser_id)
       end
-    elsif key == :title_ids
+    when :title_ids
       ids.map { |id| new(title_id: id) }
-    elsif key == :releaser_ids
+    when :releaser_ids
       ids.map { |id| new(releaser_id: id) }
     else
       raise ActiveRecord::UnknownAttributeError

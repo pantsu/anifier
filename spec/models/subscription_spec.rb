@@ -73,6 +73,10 @@ describe Subscription do
           expect { subject.create_for(ids, key, user_id) }.to_not change(Subscription, :count)
         end
       end
+
+      it "raises error if key is not the one we need" do
+        expect { subject.create_for([1, 2], :bogus_ids, user_id) }.to raise_error(ActiveRecord::UnknownAttributeError)
+      end
     end
 
     describe "::destroy_for_user" do

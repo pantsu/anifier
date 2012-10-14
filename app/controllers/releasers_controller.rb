@@ -1,4 +1,5 @@
 class ReleasersController < ApplicationController
+
   load_resource
 
   def index
