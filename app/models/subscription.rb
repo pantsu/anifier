@@ -13,13 +13,17 @@ class Subscription < ActiveRecord::Base
   ## scopes
 
   reflections.values_at(:user, :title, :releaser).each do |r|
-    scope "for_#{r.name}", ->(value){ where(r.foreign_key => value.is_a?(r.klass) ? value.id : value) }
+    scope "for_#{r.name}", ->(value) { where(r.foreign_key => value.is_a?(r.klass) ? value.id : value) }
   end
+
+  scope :for_release, ->(release) { where("title_id = ? OR releaser_id = ?", release.title_id, release.releaser_id) }
 
   ## validations
 
-  validates :user_id, :title_id, presence: true
-  validates :title_id, uniqueness: { scope: :user_id }, unless: :releaser_id
+  validates_presence_of :user_id
+
+  # we should have at least ane of [title, releaser]
+  validates :title_id,    uniqueness: { scope: :user_id }, presence: true, unless: :releaser_id
   validates :releaser_id, uniqueness: { scope: [:user_id, :title_id] }, allow_nil: true
 
 end
