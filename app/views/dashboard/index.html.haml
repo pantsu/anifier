@@ -1,7 +1,48 @@
+- if user_signed_in?
+  .dashboard
+    .row.dashboard-search
+      = form_tag "#", class: "navbar-search pull-right" do
+        = text_field_tag :search, nil, class: "search-query"
+        = submit_tag "Search", class: "btn"
 
-.hero-unit
-  %h1 Anifier
-  %h3 Get your favorite anime releases instantly in one place.
-  %p Have some patience. We working hard right now.
-  .row
-    = render 'shared/unauth_dash' unless user_signed_in?
+    .row
+      .dashboard-unit.span5
+        %h2 Watched
+        = form_tag "#", class: "dashboard-unit-inner" do
+          - @releases.each do |r|
+            = label_tag :release, class: "checkbox" do
+              = check_box_tag :release
+              = r.decorate.full_title
+
+          = submit_tag "Unsubscribe", class: "btn btn-danger dashboard-submit"
+
+
+      .dashboard-unit.span5.pull-right
+        %h2 Brand new
+        = form_tag "#", class: "dashboard-unit-inner" do
+          - @releases.each do |r|
+            = label_tag :release, class: "checkbox" do
+              = check_box_tag :release
+              = r.decorate.full_title
+
+          = submit_tag "Subscribe", class: "btn btn-inverse dashboard-submit"
+
+    .row
+      .dashboard-unit.construct.span12
+        %h2 Fuck your list, I will construct myself!
+        = form_tag "#", class: "dashboard-unit-inner .form-inline" do
+          = select :releaser, "id", @releasers.collect {|r| [r.name, r.id]}, include_blank: 'Releaser'
+          = text_field_tag :title, nil, placeholder: "Title"
+          = select "resolution", "resolution", @resolutions, include_blank: 'Resolution'
+          = submit_tag "Construct!", class: "btn btn-inverse dashboard-submit"
+
+
+
+
+- else
+  .hero-unit
+    %h1 Anifier
+    %h3 Get your favorite anime releases instantly in one place.
+    %p Have some patience. We working hard right now.
+    .row
+      = render 'shared/unauth_dash'
