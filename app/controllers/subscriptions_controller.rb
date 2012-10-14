@@ -1,14 +1,17 @@
 class SubscriptionsController < ApplicationController
+  load_resource
 
   def create
-    %w(release_ids title_ids releaser_ids).each do |key|
-      Subscription.create_for(params[key], key.to_sym, current_user.id) if params[key]
+    @subscription.user_id = current_user.id
+    if @subscription.save
+      render json: { success: true, message: t('created') }
+    else
+      render json: { success: false, message: t('failure_on_create') }
     end
-    redirect_to :back, notice: t('created')
   end
 
   def destroy
-    Subscription.destroy_for_user(params[:subscription_ids], current_user.id)
-    redirect_to :back, notice: t('destroyed')
+    @subscription.destroy
+    render json: { success: true, notice: t('destroyed') }
   end
 end

@@ -22,27 +22,8 @@ class Subscription < ActiveRecord::Base
 
   validates_presence_of :user_id
 
-  # we should have at least ane of [title, releaser]
+  # we should have at least one of [title, releaser]
   validates :title_id,    uniqueness: { scope: :user_id }, presence: true, unless: :releaser_id
   validates :releaser_id, uniqueness: { scope: [:user_id, :title_id] }, allow_nil: true
-
-  def self.create_for(ids, key, user_id)
-    case key
-    when :release_ids
-      Release.find(ids).map do |release|
-        new(title_id: release.title_id, releaser_id: release.releaser_id)
-      end
-    when :title_ids
-      ids.map { |id| new(title_id: id) }
-    when :releaser_ids
-      ids.map { |id| new(releaser_id: id) }
-    else
-      raise ActiveRecord::UnknownAttributeError
-    end.each { |s| s.user_id = user_id; s.save }
-  end
-
-  def self.destroy_for_user(subscription_ids, user_id)
-    for_user(user_id).where(id: subscription_ids).destroy_all
-  end
 
 end
