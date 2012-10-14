@@ -1,8 +1,18 @@
 %h2 Watched
-= form_tag subscriptions_path, method: :delete, class: "dashboard-unit-inner" do
-  - subscriptions.each do |s|
-    = label_tag "subscription_ids[#{s.id}]", class: "checkbox" do
-      = check_box_tag "subscription_ids[]", s.id, false, id: "subscription_ids_#{s.id}"
-      = s.decorate.full_title
+- if current_user.subscriptions.empty?
+  .alert.alert-info
+    .alert-title You don't have any subscriptions yet.
+    %p
+      Subscribe to latest releases by checking them in nearby box or choose
+      = link_to 'releasers', releasers_path, class: 'badge badge-inverse'
+      or
+      = link_to 'titles', titles_path, class: 'badge badge-inverse'
+      you want to be notified about.
+- else
+  = form_tag subscriptions_path, method: :delete, class: "dashboard-unit-inner" do
+    - subscriptions.each do |s|
+      = label_tag "subscription_ids[#{s.id}]", class: "checkbox" do
+        = check_box_tag "subscription_ids[]", s.id, false, id: "subscription_ids_#{s.id}"
+        = s.decorate.full_title
 
-  = submit_tag "Unsubscribe", class: "btn btn-danger dashboard-submit", confirm: t('are_you_sure')
+    = submit_tag "Unsubscribe", class: "btn btn-danger dashboard-submit", confirm: t('are_you_sure')

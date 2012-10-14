@@ -6,8 +6,8 @@
         = submit_tag "Search", class: "btn"
 
     .row
-      .dashboard-unit.span5= render "shared/subscriptions", subscriptions: @subscriptions
-      .dashboard-unit.span5.pull-right= render "shared/new_releases", releases: @releases
+      .dashboard-unit.span6= render "shared/subscriptions", subscriptions: @subscriptions
+      .dashboard-unit.span6= render "shared/new_releases", releases: @releases
 
     .row
       .dashboard-unit.construct.span12
@@ -16,7 +16,7 @@
           = select :releaser, "id", @releasers.collect {|r| [r.name, r.id]}, include_blank: 'Releaser'
           = autocomplete_field_tag :title, nil, autocomplete_title_name_titles_path, placeholder: "Title (autocomplete)"
           = select "resolution", "resolution", @resolutions, include_blank: 'Resolution'
-          = submit_tag "Construct!", class: "btn btn-inverse dashboard-submit"
+          = submit_tag "Construct!", class: "btn btn-inverse"
 
 - else
   .hero-unit

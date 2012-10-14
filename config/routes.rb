@@ -1,5 +1,5 @@
 Anifier::Application.routes.draw do
-  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
 
   root to: 'dashboard#index'
 
@@ -7,7 +7,7 @@ Anifier::Application.routes.draw do
 
   resources :releasers, only: [:index, :show]
 
-  resources :titles, only: [] do
+  resources :titles, only: [:index] do
     get :autocomplete_title_name, on: :collection
   end
 
