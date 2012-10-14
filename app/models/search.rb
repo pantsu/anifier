@@ -57,4 +57,8 @@ class Search
     self
   end
 
+  def persisted?
+    true
+  end
+
 end
