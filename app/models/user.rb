@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
-  has_many :subscriptions, :dependent => :delete_all
+  has_many :subscriptions, dependent: :delete_all
   has_many :titles, through: :subscriptions, uniq: true
 
 end
