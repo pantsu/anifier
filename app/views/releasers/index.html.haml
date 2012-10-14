@@ -26,12 +26,13 @@
                 - r.titles.each do |t|
                   %li{ data: { title_id: t.id }}
                     - if current_user.titles.include?(t)
-                      %button.btn.btn-danger.btn-mini.fade{ data: { action: 'Unsubscribe', instance_id: t.id, instance_class: t.class, 'original-title' => t('unsubscribe')}}
+                      - s = t.subscriptions.keep_if{|s| s.title_id == t.id}.first
+                      %button.btn.btn-danger.btn-mini.fade{ data: { action: 'unsubscribe', subscription_id: s.id, url: subscription_path(s),'original-title' => 'Unsubscribe'}}
                         %i.icon-minus
                       &nbsp;
                       %span.text-success= t.name
                     - else
-                      %button.btn.btn-success.btn-mini.fade{ data: { action: 'Subscribe', instance_id: t.id, instance_class: t.class, 'original-title' => t('subsribe')}}
+                      %button.btn.btn-success.btn-mini.fade{ data: { action: 'subscribe', title_id: t.id, releaser_id: nil, url: subscriptions_path, 'original-title' => t('subscribe')}}
                         %i.icon-plus
                       &nbsp;
                       = t.name

@@ -1,10 +1,8 @@
 $ ->
 
-  $('.sub-unsub').on 'onmouseover', 'li', ->
-    -> $(@).find('.btn').addClass('in')
-
-  $('.sub-unsub').on 'onmouseout', 'li', ->
-    -> $(@).find('.btn').removeClass('in')
+  $('.sub-unsub li').hover(
+    -> $(@).find('.btn').addClass('in'),
+    -> $(@).find('.btn').removeClass('in'))
 
   lockButton = ($button) ->
     $button.addClass('disabled').removeClass 'btn-success btn-danger'
@@ -16,7 +14,7 @@ $ ->
   unsubscribeButton = ($button, url) ->
     $button.data('action', 'unsubscribe')
     $button.data('original-title', 'Unsubscribe')
-    $button.data('url', url)
+    $button.attr('data-url', url)
     $button.addClass('btn-danger')
     $button.html "<i class='icon-minus'></i>"
     $button.tooltip()
@@ -40,6 +38,7 @@ $ ->
       dataType: 'json'
       beforeSend: () -> lockButton $button
       success: (data) ->
+        console.log data.url
         unsubscribeButton $button, data.url
         $button.parent().append "
           <span class='text-success'>
