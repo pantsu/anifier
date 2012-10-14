@@ -3,9 +3,9 @@ class SubscriptionDecorator < ApplicationDecorator
 
   def full_title
     result = []
+    result << "[#{model.releaser.name}]" if model.releaser
     result << model.title.name if model.title
-    result << model.releaser.name if model.releaser
-    result << h.l(model.created_at, format: :short)
+    # result << h.l(model.created_at, format: :short)
     result.join(' ')
   end
 end

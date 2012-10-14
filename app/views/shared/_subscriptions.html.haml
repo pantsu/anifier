@@ -4,10 +4,10 @@
     .alert-title= t('no_subscriptions')
     %p=t('subscribe_latest', releasers: link_to('releasers', releasers_path, class: 'badge badge-inverse'), titles: (link_to 'titles', titles_path, class: 'badge badge-inverse')).html_safe
 - else
-  = form_tag subscriptions_path, method: :delete, class: "dashboard-unit-inner" do
-    - subscriptions.each do |s|
-      = label_tag "subscription_ids[#{s.id}]", class: "checkbox" do
-        = check_box_tag "subscription_ids[]", s.id, false, id: "subscription_ids_#{s.id}"
-        = s.decorate.full_title
-
-    = submit_tag "Unsubscribe", class: "btn btn-danger dashboard-submit", confirm: t('are_you_sure')
+  .dashboard-unit-inner
+    %ul#subscriptions.unstyled.sub-unsub
+      - subscriptions.each do |s|
+        %li
+          %span.text-success= s.decorate.full_title
+          &nbsp;
+          %button.btn.btn-danger.btn-mini.fade Unsubscribe

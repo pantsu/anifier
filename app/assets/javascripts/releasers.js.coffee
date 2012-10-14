@@ -1,5 +1,5 @@
 $ ->
-  $('#titles ul li').hover(
+  $('.sub-unsub li').hover(
     -> $(@).find('.btn').addClass('in'),
     -> $(@).find('.btn').removeClass('in'))
 

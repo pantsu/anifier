@@ -17,12 +17,12 @@
               %li{ class: "#{'active' if i == 0}"}
                 = link_to t.name, "#title_#{t.id}", data: { toggle: "pill" }
       .span8
-        #titles.tab-content
+        #releasers.tab-content
           - @titles.each_with_index do |t, i|
             %div{ id: "title_#{t.id}", class: "tab-pane fade #{'in active' if i == 0}"}
               %br/
               %h3= "#{t.name} releasers"
-              %ul.unstyled
+              %ul.unstyled.sub-unsub
                 - t.releasers.each do |r|
                   %li{ data: { title_id: r.id }}
                     - if current_user.releasers.include?(r)

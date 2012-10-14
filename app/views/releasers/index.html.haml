@@ -22,7 +22,7 @@
             %div{ id: "releaser_#{r.id}", class: "tab-pane fade #{'in active' if i == 0}"}
               %br/
               %h3= "#{r.name} titles"
-              %ul.unstyled
+              %ul.unstyled.sub-unsub
                 - r.titles.each do |t|
                   %li{ data: { title_id: t.id }}
                     - if current_user.titles.include?(t)
