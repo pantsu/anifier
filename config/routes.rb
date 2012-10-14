@@ -6,4 +6,8 @@ Anifier::Application.routes.draw do
   resources :users, only: :show
 
   resources :releasers, only: [:index, :show]
+
+  resources :titles do
+    get :autocomplete_title_name, on: :collection
+  end
 end

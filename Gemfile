@@ -17,8 +17,11 @@ gem 'hiredis'
 gem 'redis-namespace'
 gem 'kaminari'
 
+
 gem 'haml-rails'
 gem 'simple_form'
+gem 'rails3-jquery-autocomplete'
+gem 'jquery-ui-rails'
 
 group :api do
   gem 'feedzirra'
