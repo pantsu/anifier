@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable and :timeoutable
@@ -10,7 +11,4 @@ class User < ActiveRecord::Base
   has_many :subscriptions, :dependent => :delete_all
   has_many :titles, through: :subscriptions, uniq: true
 
-  def to_s
-    email
-  end
 end
