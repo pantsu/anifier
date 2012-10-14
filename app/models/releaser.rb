@@ -14,6 +14,7 @@ class Releaser < ActiveRecord::Base
   ## scopes
 
   scope :with_name, ->(name){ where(name: name) }
+  scope :random, order('random()')
 
   ## validations
 

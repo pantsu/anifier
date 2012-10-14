@@ -9,6 +9,10 @@ class Release < ActiveRecord::Base
   belongs_to :releaser
   belongs_to :title
 
+  ## scopes
+
+  scope :recent, order('created_at DESC')
+
   ## plugins
 
   define_index :releases do
