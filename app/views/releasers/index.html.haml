@@ -1,0 +1,5 @@
+=paginate @releasers
+
+%ul
+  - @releasers.each do |r|
+    %li= link_to(t('.releaser', name: r.name), releaser_path(r))

@@ -15,6 +15,7 @@ class Releaser < ActiveRecord::Base
 
   scope :with_name, ->(name){ where(name: name) }
   scope :random, order('random()')
+  scope :recent, order('created_at DESC')
 
   ## validations
 

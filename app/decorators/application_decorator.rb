@@ -2,7 +2,6 @@ class ApplicationDecorator < Draper::Base
 
   def self.helper
     _helper = Module.new
-    _helper.send :include, ::LocaleHelpers, ::TimeHelper
     _helper
   end
 

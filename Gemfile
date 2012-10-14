@@ -17,7 +17,6 @@ gem 'hiredis'
 gem 'redis-namespace'
 gem 'kaminari'
 
-# gem 'slim'
 gem 'haml-rails'
 gem 'simple_form'
 

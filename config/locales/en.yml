@@ -4,3 +4,11 @@
 en:
   volume: "vol. %{value}"
   episodes: "ep. %{value}"
+  hello: "Hello world"
+  releasers:
+    show:
+      releaser: "Releaser %{name}"
+  active_record:
+    attributes:
+      releaser:
+        no_description: "No description"
