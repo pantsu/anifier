@@ -22,7 +22,12 @@ class Subscription < ActiveRecord::Base
 
   validates_presence_of :user_id
 
+  # @note:
   # we should have at least one of [title, releaser]
+  # and [title, releaser, user] should be unique
+  validates_presence_of :releaser, unless: :title
+  validates_presence_of :title,    unless: :releaser
+
   validates :title_id,    uniqueness: { scope: :user_id }, presence: true, unless: :releaser_id
   validates :releaser_id, uniqueness: { scope: [:user_id, :title_id] }, allow_nil: true
 
