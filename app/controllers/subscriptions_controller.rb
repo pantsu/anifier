@@ -17,9 +17,9 @@ class SubscriptionsController < ApplicationController
     @subscription.title_id    = params[:title_id]
 
     if @subscription.save
-      redirect_to :back, notice: "subscriptions.create.success"
+      redirect_to :back, notice: t("subscriptions.create.success")
     else
-      redirect_to :back, notice: "subscriptions.create.failure"
+      redirect_to :back, notice: t("subscriptions.create.failure")
     end
   end
 
