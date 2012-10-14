@@ -6,7 +6,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def destroy
-    subscriptions = Subscription.destroy_for_user(params[:subscription_ids], current_user.id)
+    Subscription.destroy_for_user(params[:subscription_ids], current_user.id)
     redirect_to :back, notice: t('destroyed')
   end
 end

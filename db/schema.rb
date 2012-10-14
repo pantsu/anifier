@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20121014102607) do
   add_index "notifications", ["user_id", "release_id"], :name => "index_notifications_on_user_id_and_release_id", :unique => true
 
   create_table "releasers", :force => true do |t|
-    t.string   "name"
+    t.string   "name",        :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.text     "description"
