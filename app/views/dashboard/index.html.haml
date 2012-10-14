@@ -2,11 +2,11 @@
   .dashboard
     .row
       .dashboard-unit.construct.span12
-        %h2 I know what I'm doing. I will find release by myself!
-        = form_tag "#", class: "dashboard-unit-inner .form-inline" do
-          = select :releaser, "id", @releasers.collect {|r| [r.name, r.id]}, include_blank: 'Releaser'
-          = autocomplete_field_tag :title, nil, autocomplete_title_name_titles_path, placeholder: t('title_autocomplete')
-          = select "resolution", "resolution", @resolutions, include_blank: t('resolution')
+        %h2 I know what I'm doing. I will find release myself!
+        = form_tag root_path, method: :get, class: "dashboard-unit-inner .form-inline" do
+          = select_tag :releaser_id, options_from_collection_for_select(@releasers, :id, :name, params[:releaser_id].to_s), include_blank: 'Releaser'
+          = autocomplete_field_tag :title, params[:title], autocomplete_title_name_titles_path, placeholder: t('title_autocomplete')
+          = select_tag :resolution, options_for_select(@resolutions, params[:resolution]), include_blank: t('resolution')
           = submit_tag "Construct!", class: "btn btn-inverse"
 
     .row
