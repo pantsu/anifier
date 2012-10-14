@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Search do
 
   before do
-    scopes = Search::ORDER_MODES + Search::MATCH_MODES + [:with_audio, :with_video, :with_resolution]
+    scopes = Search::ORDER_MODES + Search::MATCH_MODES + [:with_audio, :with_video, :with_resolution, :with_releaser_id]
     scopes.each { |scope| Release.stub(scope).and_return(Release) }
   end
 
