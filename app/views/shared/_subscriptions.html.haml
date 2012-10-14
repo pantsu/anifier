@@ -2,7 +2,7 @@
 - if current_user.subscriptions.empty?
   .alert.alert-info
     .alert-title= t('no_subscriptions')
-    %p=t('subscribe_lasest', releasers: link_to 'releasers', releasers_path, class: 'badge badge-inverse', titles: link_to 'titles', titles_path, class: 'badge badge-inverse')
+    %p=t('subscribe_lasest', releasers: link_to('releasers', releasers_path, class: 'badge badge-inverse'), titles: (link_to 'titles', titles_path, class: 'badge badge-inverse'))
 - else
   = form_tag subscriptions_path, method: :delete, class: "dashboard-unit-inner" do
     - subscriptions.each do |s|

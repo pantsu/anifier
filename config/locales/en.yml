@@ -8,7 +8,7 @@ en:
   are_you_sure: "Are you sure?"
   created: "Successfully created"
   updated: "Successfully updated"
-  detroyed: "Successfully deleted"
+  destroyed: "Successfully deleted"
   welcome: "Welcome to Anifier"
   project_title: "Anifier"
   delete: "delete"

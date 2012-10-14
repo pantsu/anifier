@@ -1,6 +1,0 @@
-- if flash
-  .notice
-    %button.close{type: "button", data: {dismiss: "alert"}} ×
-    - [:notice, :alert].each do |kind|
-      - if flash[kind].present?
-        = flash[kind]
