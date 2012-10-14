@@ -57,6 +57,20 @@ describe Search do
       end
     end
 
+    context "using :with_releaser_id scope" do
+      it "applies :with_releaser_id scope if the 'releaser_id' option is not blank" do
+        search = Search.new("query", releaser_id: '1')
+        Release.should_receive(:with_releaser_id).with('1')
+        search.results
+      end
+
+      it "does not apply :with_releaser_id scope if the 'releaser_id' option is blank" do
+        search = Search.new("query", releaser_id: '')
+        Release.should_not_receive(:with_releaser_id)
+        search.results
+      end
+    end
+
     Search::ORDER_MODES.each do |mode|
       it "applies #{mode.inspect} scope if :order_mode option is set to #{mode.inspect}" do
         search = Search.new("query", order_mode: mode)

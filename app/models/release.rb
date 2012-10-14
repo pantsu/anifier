@@ -39,6 +39,8 @@ class Release < ActiveRecord::Base
   sphinx_scope(:by_all_words)  {{:match_mode => :all}}
   sphinx_scope(:by_any_word)   {{:match_mode => :any}}
 
+  sphinx_scope(:with_releaser_id)   { |value| {:with => {:releaser_id => value}}}
+
   SEARCH_ATTRIBUTES.each do |field|
     sphinx_scope(:"with_#{field}") { |value| {:with => {field => value.to_s.downcase.to_crc32}}}
   end

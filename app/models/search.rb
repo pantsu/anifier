@@ -9,7 +9,7 @@ class Search
   include ActiveModel::Conversion
   include Draped
 
-  attr_reader :query, :order_mode, :match_mode, :resolution, :audio, :video
+  attr_reader :query, :order_mode, :match_mode, :resolution, :audio, :video, :releaser_id
 
   ## validations
 
@@ -24,7 +24,7 @@ class Search
   def initialize(query, options = {})
     @page = 1
     @query = query
-    options.assert_valid_keys(:order_mode, :match_mode, :limit, :resolution, :audio, :video)
+    options.assert_valid_keys(:order_mode, :match_mode, :limit, :resolution, :audio, :video, :releaser_id)
     options.each { |name, value| instance_variable_set :"@#{name}", value }
     options[:limit] ||= 10
   end
@@ -43,6 +43,7 @@ class Search
       scoped = scoped.with_resolution(resolution) if resolution.present?
       scoped = scoped.with_audio(audio) if audio.present?
       scoped = scoped.with_video(video) if video.present?
+      scoped = scoped.with_releaser_id(releaser_id) if releaser_id.present?
       scoped
     end
   end
