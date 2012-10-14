@@ -2,7 +2,7 @@
   %h3 Latest releases
   %ul
     - @releases.each do |r|
-      %li= r.full_title
+      %li= r.decorate.full_title
 .span5
   %h3 Some random releasers
   %ul
