@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
-  has_many :subscriptions
+  has_many :subscriptions, :dependent => :delete_all
   has_many :titles, through: :subscriptions, uniq: true
 
   def to_s
