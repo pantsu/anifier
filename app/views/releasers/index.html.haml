@@ -1,8 +1,35 @@
 .dashboard
-  = paginate @releasers
+  / = paginate @releasers
+  .dashboard-unit
+    .row
+      .span4
+        .well
+          %h3 Releasers
+          %form#filter-releasers.form-search
+            .input-prepend
+              %button.btn.disabled
+                %i.icon-filter
+              %input.search-query{ placeholder: "Filter", type: "text" }
 
-  .row
-    .dashboard-unit.span8.offset2
-      %ul.nav.nav-pills.nav-stacked.dashboard-unit-inner
-        - @releasers.each do |r|
-          %li= link_to(t('releaser', name: r.name), releaser_path(r))
+
+          %ul#releasers.nav.nav-pills.nav-stacked
+            - @releasers.each_with_index do |r, i|
+              %li{ class: "#{'active' if i == 0}"}
+                = link_to r.name, "#releaser_#{r.id}", data: { toggle: "pill" }
+      .span8
+        #titles.tab-content
+          - @releasers.each_with_index do |r, i|
+            %div{ id: "releaser_#{r.id}", class: "tab-pane fade #{'in active' if i == 0}"}
+              %br/
+              %h3= "#{r.name} titles"
+              %ul.unstyled
+                - r.titles.each do |t|
+                  %li{ data: { title_id: t.id }}
+                    - if current_user.titles.include?(t)
+                      %span.text-success= t.name
+                      &nbsp;
+                      %button.btn.btn-danger.btn-mini.fade Unsubscribe
+                    - else
+                      = t.name
+                      &nbsp;
+                      %button.btn.btn-inverse.btn-mini.fade Subscribe

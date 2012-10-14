@@ -2,7 +2,8 @@ class ReleasersController < ApplicationController
   load_resource
 
   def index
-    @releasers = @releasers.recent.page(params[:page])
+    @releasers = Releaser.order(:name)
+    # @releasers = @releasers.recent.page(params[:page])
   end
 
   def show
