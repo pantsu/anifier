@@ -15,6 +15,7 @@ class RegistrationsController < Devise::RegistrationsController
       end
     else
       clean_up_passwords resource
+      flash[:alert] = t('user_already_exists')
       redirect_to root_url(anchor: 'open-sign-in')
     end
   end

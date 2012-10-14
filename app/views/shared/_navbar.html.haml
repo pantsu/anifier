@@ -21,5 +21,5 @@
               = link_to destroy_user_session_path, method: :delete, class: 'btn btn-danger' do
                 %i.icon-off
             - else
-              %button.btn.btn-info{ data: { toggle: 'modal', target: '#sign-in-modal' }}
+              %button#login-popup-btn.btn.btn-info{ data: { toggle: 'modal', target: '#sign-in-modal' }}
                 =t('sign_up_in')

@@ -46,3 +46,4 @@ en:
   new_release_details: "Take a look at details at %{url}"
   sign_up_in: "Sign up/in"
   failure_on_create: "Subscription is not created"
+  user_already_exists: "User with such credentials already exists"
