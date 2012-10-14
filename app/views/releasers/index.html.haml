@@ -26,12 +26,12 @@
                 - r.titles.each do |t|
                   %li{ data: { title_id: t.id }}
                     - if current_user.titles.include?(t)
-                      %span.text-success= t.name
-                      &nbsp;
                       %button.btn.btn-danger.btn-mini.fade{ data: { action: 'Unsubscribe', instance_id: t.id, instance_class: t.class, 'original-title' => 'Unsubscribe'}}
                         %i.icon-minus
-                    - else
-                      = t.name
                       &nbsp;
+                      %span.text-success= t.name
+                    - else
                       %button.btn.btn-success.btn-mini.fade{ data: { action: 'Subscribe', instance_id: t.id, instance_class: t.class, 'original-title' => 'Subscribe'}}
                         %i.icon-plus
+                      &nbsp;
+                      = t.name

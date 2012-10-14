@@ -26,12 +26,12 @@
                 - t.releasers.each do |r|
                   %li{ data: { title_id: r.id }}
                     - if current_user.releasers.include?(r)
-                      %span.text-success= r.name
-                      &nbsp;
                       %button.btn.btn-danger.btn-mini.fade{ data: { action: 'Unsubscribe', instance_id: r.id, instance_class: r.class, 'original-title' => 'Unsubscribe'}}
                         %i.icon-minus
-                    - else
-                      = r.name
                       &nbsp;
+                      %span.text-success= r.name
+                    - else
                       %button.btn.btn-success.btn-mini.fade{ data: { action: 'Subscribe', instance_id: r.id, instance_class: r.class, 'original-title' => 'Subscribe'}}
                         %i.icon-plus
+                      &nbsp;
+                      = r.name
