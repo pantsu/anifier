@@ -1,10 +1,8 @@
-%h2= %w(q title releaser_id resolution).any? { |p| params[p].present? } ? t('search_results') : t('brand_new')
+%h2= params[:q] ? t('search_results') : t('brand_new')
 = form_tag subscriptions_path, method: :post, class: "dashboard-unit-inner" do
   %ul.unstyled.sub-unsub
     - releases.each do |r|
       %li
-        = r.decorate.full_title
-        &nbsp;
         %button.btn.btn-success.btn-mini.fade{ data: { action: 'Subscribe', instance_id: r.id, 'original-title' => 'Subscribe'}}
           %i.icon-plus
 
