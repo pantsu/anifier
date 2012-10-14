@@ -4,6 +4,10 @@ describe Subscription do
   subject { build_stubbed(:subscription) }
   it { should be_valid }
 
+  it "is not able to create an empty subscription" do
+    build(:subscription, title: nil, releaser: nil).save.should be_false
+  end
+
   it "is able to create a subscription to title" do
     create(:subscription_to_title).should be_true
   end
