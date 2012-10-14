@@ -1,7 +1,7 @@
 class ReleaseDecorator < ApplicationDecorator
 
   def full_title
-    "[#{model.releaser_name}] #{model.title_name} #{issue}"
+    "[#{model.releaser_name}] #{model.title_name} #{issue} [#{model.resolution}p]"
   end
 
   def volume
