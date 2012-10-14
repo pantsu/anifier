@@ -1,9 +1,13 @@
-%h3= @releaser.name
+.dashboard
+  .row
+    .dashboard-unit.span12
+      .dashboard-unit-inner
+        %h3= @releaser.name
 
-%p= link_to t('.delete'), admin_releaser_path(@releaser), method: :delete, confirm: t('.are_you_sure')
+        %p= link_to t('.delete'), admin_releaser_path(@releaser), method: :delete, confirm: t('.are_you_sure'), class: "btn btn-danger"
 
-= simple_form_for @releaser, url: admin_releaser_path(@releaser) do |f|
-  = f.input :name
-  = f.input :description
-  = f.input :url
-  = f.button :submit
+        = simple_form_for @releaser, url: admin_releaser_path(@releaser) do |f|
+          = f.input :name, input_html: {class: "span11"}
+          = f.input :description, input_html: {class: "span11"}
+          = f.input :url, input_html: {class: "span11"}
+          = f.button :submit
