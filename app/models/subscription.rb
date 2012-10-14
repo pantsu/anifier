@@ -31,4 +31,10 @@ class Subscription < ActiveRecord::Base
   validates :title_id,    uniqueness: { scope: :user_id }, presence: true, unless: :releaser_id
   validates :releaser_id, uniqueness: { scope: [:user_id, :title_id] }, allow_nil: true
 
+  ## public methods
+
+  def full?
+    releaser_id.present? && title_id.present?
+  end
+
 end

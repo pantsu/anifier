@@ -16,7 +16,9 @@ class SubscriptionsController < ApplicationController
     @subscription.releaser_id = params[:releaser_id]
     @subscription.title_id    = params[:title_id]
 
-    if @subscription.save
+    if !@subscription.full?
+      redirect_to :back, notice: t("subscriptions.create.unprocessable")
+    elsif @subscription.save
       redirect_to :back, notice: t("subscriptions.create.success")
     else
       redirect_to :back, alert: t("subscriptions.create.failure")
