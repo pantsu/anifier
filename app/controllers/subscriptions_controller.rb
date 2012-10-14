@@ -19,7 +19,7 @@ class SubscriptionsController < ApplicationController
     if @subscription.save
       redirect_to :back, notice: t("subscriptions.create.success")
     else
-      redirect_to :back, notice: t("subscriptions.create.failure")
+      redirect_to :back, alert: t("subscriptions.create.failure")
     end
   end
 
