@@ -9,6 +9,7 @@ Anifier::Application.routes.draw do
 
   resources :titles do
     get :autocomplete_title_name, on: :collection
+  end
 
   namespace :admin do
     resources :releasers, only: [:index, :edit, :update, :destroy]
