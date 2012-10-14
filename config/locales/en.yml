@@ -31,6 +31,7 @@ en:
     create:
       success: "Successfully subscribed!"
       failure: "Cannot subscribe, sorry."
+      unprocessable: "Unfortunately, you doesn't know what you are doing. Sorry."
     destroy:
       success: "Successfully unsubscribed!"
       failure: "You MUST watch it! (unsubscription failed, sorry)."
