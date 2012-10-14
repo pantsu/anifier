@@ -1,5 +1,6 @@
 require 'bundler/capistrano'
 require "rvm/capistrano"
+require 'thinking_sphinx/deploy/capistrano'
 
 set :application, "anifier"
 set :repository,  "git@github.com:railsrumble/r12-team-527.git"
@@ -39,5 +40,7 @@ namespace :deploy do
 end
 
 after "deploy:update_code", "deploy:symlink_configs"
+after "deploy:update_code", "thinking_sphinx:configure"
 # after "deploy:update_code", "deploy:symlink_cache"
 after "deploy", "deploy:cleanup"
+after "deploy", "thinking_sphinx:rebuild"
