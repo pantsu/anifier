@@ -8,7 +8,7 @@ describe ReleasersController do
     response.should be_success
   end
 
-  it "successfully reners #show action" do
+  it "successfully renders #show action" do
     get :show, id: create(:releaser).to_param
     response.should be_success
   end

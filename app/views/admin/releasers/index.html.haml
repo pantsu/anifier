@@ -1,0 +1,5 @@
+=paginate @releasers
+
+%ul
+  - @releasers.each do |r|
+    %li= link_to(r.name, edit_admin_releaser_path(r))
