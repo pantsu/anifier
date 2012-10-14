@@ -12,3 +12,13 @@
  *= require mousetrap
  *= require_tree .
  */
+
+
+.current-user-link {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  margin-right: 10px;
+  height: 10px;
+  vertical-align: middle;
+}

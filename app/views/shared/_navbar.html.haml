@@ -4,7 +4,7 @@
       = link_to 'Anifier', root_path, class: 'brand'
       .pull-right
         - if user_signed_in?
-          = link_to current_user, current_user
+          = link_to current_user, current_user, class: 'current-user-link'
           = link_to destroy_user_session_path, method: :delete, class: 'btn btn-danger' do
             %i.icon-off
         - else
