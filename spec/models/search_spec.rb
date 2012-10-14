@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Search do
 
   before do
-    scopes = Search::ORDER_MODES + Search::MATCH_MODES + [:with_audio, :with_video]
+    scopes = Search::ORDER_MODES + Search::MATCH_MODES + [:with_audio, :with_video, :with_resolution]
     scopes.each { |scope| Release.stub(scope).and_return(Release) }
   end
 
@@ -15,28 +15,46 @@ describe Search do
       search.results.should be_blank
     end
 
-    it "applies :with_audio scope if the 'audio' option is not blank" do
-      search = Search.new("query", audio: 'AAC')
-      Release.should_receive(:with_audio).with('AAC')
-      search.results
+    context "using :with_audio scope" do
+      it "applies :with_audio scope if the 'audio' option is not blank" do
+        search = Search.new("query", audio: 'AAC')
+        Release.should_receive(:with_audio).with('AAC')
+        search.results
+      end
+
+      it "does not apply :with_audio scope if the 'audio' option is blank" do
+        search = Search.new("query")
+        Release.should_not_receive(:with_audio)
+        search.results
+      end
     end
 
-    it "does not apply :with_audio scope if the 'audio' option is blank" do
-      search = Search.new("query", audio: '')
-      Release.should_not_receive(:with_audio)
-      search.results
+    context "using :with_video scope" do
+      it "applies :with_video scope if the 'video' option is not blank" do
+        search = Search.new("query", video: 'H264')
+        Release.should_receive(:with_video).with('H264')
+        search.results
+      end
+
+      it "does not apply :with_video scope if the 'video' option is blank" do
+        search = Search.new("query")
+        Release.should_not_receive(:with_video)
+        search.results
+      end
     end
 
-    it "applies :with_video scope if the 'video' option is not blank" do
-      search = Search.new("query", video: 'H264')
-      Release.should_receive(:with_video).with('H264')
-      search.results
-    end
+    context "using :with_resolution scope" do
+      it "applies :with_resolution scope if the 'resolution' option is not blank" do
+        search = Search.new("query", resolution: '720')
+        Release.should_receive(:with_resolution).with('720')
+        search.results
+      end
 
-    it "does not apply :with_video scope if the 'video' option is blank" do
-      search = Search.new("query", video: '')
-      Release.should_not_receive(:with_video)
-      search.results
+      it "does not apply :resolution scope if the 'resolution' option is blank" do
+        search = Search.new("query", resolution: '')
+        Release.should_not_receive(:with_resolution)
+        search.results
+      end
     end
 
     Search::ORDER_MODES.each do |mode|
@@ -60,9 +78,12 @@ describe Search do
         match_mode: 'by_any_word',
         order_mode: 'by_relevance',
         audio: 'aac',
-        video: 'h264')
+        video: 'h264',
+        resolution: '720')
 
-      [:by_any_word, :by_relevance, :with_audio, :with_video].each { |scope| Release.should_receive(scope) }
+      [:by_any_word, :by_relevance, :with_audio, :with_video, :with_resolution].each do |scope|
+        Release.should_receive(scope)
+      end
       search.results
     end
 

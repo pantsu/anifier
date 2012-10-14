@@ -1,5 +1,9 @@
 class Release < ActiveRecord::Base
 
+  ## consnants
+
+  SEARCH_ATTRIBUTES = [:resolution, :audio, :video]
+
   ## included modules and attr_*
 
   attr_protected
@@ -19,8 +23,7 @@ class Release < ActiveRecord::Base
     indexes title(:name), as: :title, sortable: true
     indexes media
 
-    has "crc32(audio)", as: :audio, type: :integer
-    has "crc32(video)", as: :video, type: :integer
+    SEARCH_ATTRIBUTES.each { |field| has "crc32(#{field})", as: field, type: :integer }
 
     has releaser_id
     has created_at
@@ -30,14 +33,15 @@ class Release < ActiveRecord::Base
 
   ## sphinx scopes
 
-  sphinx_scope(:by_relevance)  {{:order => '@relevance DESC'}}
+  sphinx_scope(:by_relevance)  {{:order => '@relevance ASC'}}
 
   sphinx_scope(:by_phrase)     {{:match_mode => :phrase}}
   sphinx_scope(:by_all_words)  {{:match_mode => :all}}
   sphinx_scope(:by_any_word)   {{:match_mode => :any}}
 
-  sphinx_scope(:with_audio)    { |audio| {:with => {:audio => audio.to_s.downcase.to_crc32}}}
-  sphinx_scope(:with_video)    { |video| {:with => {:video => video.to_s.downcase.to_crc32}}}
+  SEARCH_ATTRIBUTES.each do |field|
+    sphinx_scope(:"with_#{field}") { |value| {:with => {field => value.to_s.downcase.to_crc32}}}
+  end
 
   ## validations
 
@@ -66,8 +70,8 @@ class Release < ActiveRecord::Base
         end
       end
     end
-  # @todo: handle pg exception
   rescue ActiveRecord::RecordNotUnique
+    false
   end
 
 end
