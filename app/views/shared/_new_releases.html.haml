@@ -1,8 +1,8 @@
 %h2 Brand new
-= form_tag "#", class: "dashboard-unit-inner" do
+= form_tag subscriptions_path, method: :post, class: "dashboard-unit-inner" do
   - releases.each do |r|
-    = label_tag :release, class: "checkbox" do
-      = check_box_tag :release
+    = label_tag "release_ids[#{r.id}]", class: "checkbox" do
+      = check_box_tag "release_ids[]", r.id, false, id: "release_ids_#{r.id}"
       = r.decorate.full_title
 
   = submit_tag "Subscribe", class: "btn btn-inverse dashboard-submit"

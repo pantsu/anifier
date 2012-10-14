@@ -6,6 +6,7 @@ en:
   episodes: "ep. %{value}"
   unspecified: "unspecified"
   are_you_sure: "Are you sure?"
+  created: "Successfully created"
   updated: "Successfully updated"
   detroyed: "Successfully deleted"
 
