@@ -1,7 +1,9 @@
 class SubscriptionsController < ApplicationController
 
   def create
-    Subscription.create_from_release_ids(params[:release_ids], current_user.id)
+    %w(release_ids title_ids releaser_ids).each do |key|
+      Subscription.create_for(params[key], key.to_sym, current_user.id) if params[key]
+    end
     redirect_to :back, notice: t('created')
   end
 

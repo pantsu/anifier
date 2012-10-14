@@ -11,6 +11,12 @@ describe SubscriptionsController do
     response.should redirect_to(root_path)
   end
 
+  %w(release releaser title).each do |model|
+    it "creates subscriptions using #{model}" do
+      expect { post :create, "#{model}_ids" => [create(model).id, create(model).id] }.to change(Subscription, :count).by(2)
+    end
+  end
+
   it "redirects back after deleting subscriptions" do
     delete :destroy, subscription_ids: [create(:subscription).id, create(:subscription).id]
     response.should redirect_to(root_path)

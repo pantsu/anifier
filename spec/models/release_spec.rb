@@ -23,8 +23,7 @@ describe Release do
     let(:attributes) { API::RELEASE_ATTRIBUTES.inject({}) { |hsh, attr| hsh[attr] = attr; hsh } }
 
     it "raises error if unknown attribute is passed" do
-      expect { subject.import(bogus: 'bogus') }\
-        .to raise_error(ActiveRecord::UnknownAttributeError)
+      expect { subject.import(bogus: 'bogus') }.to raise_error(ActiveRecord::UnknownAttributeError)
     end
 
     it "creates new release" do
@@ -52,7 +51,7 @@ describe Release do
   end
 
   context "decorated" do
-    describe "#issue" do 
+    describe "#issue" do
       it "uses both volume and episode, if possible" do
         build_stubbed(:release, volume: "3", episodes: "12-15").decorate.issue.should == "vol. 3, ep. 12-15"
       end

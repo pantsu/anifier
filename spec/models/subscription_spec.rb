@@ -59,21 +59,24 @@ describe Subscription do
     subject { Subscription }
     let(:user_id) { build_stubbed(:user).id }
 
-    describe "::create_from_release_ids" do
-      let(:release_ids) { 2.times { create(:release) }; Release.all.map(&:id) }
+    describe "::create_for" do
+      %w(release title releaser).each do |model|
+        let(:ids) { 2.times { create(model) }; model.classify.constantize.all.map(&:id) }
+        let(:key) { "#{model}_ids".to_sym }
 
-      it "creates subscriptions if they are not exists already" do
-        expect { subject.create_from_release_ids(release_ids, user_id) }.to change(Subscription, :count).by(2)
-      end
+        it "creates subscriptions if they are not exists already" do
+          expect { subject.create_for(ids, key, user_id) }.to change(Subscription, :count).by(2)
+        end
 
-      it "does not create subscriptions if they are already exist" do
-        subject.create_from_release_ids(release_ids, user_id)
-        expect { subject.create_from_release_ids(release_ids, user_id) }.to_not change(Subscription, :count)
+        it "does not create subscriptions if they are already exist" do
+          subject.create_for(ids, key, user_id)
+          expect { subject.create_for(ids, key, user_id) }.to_not change(Subscription, :count)
+        end
       end
     end
 
     describe "::destroy_for_user" do
-      it "deletes only users subscrptions" do
+      it "deletes only users subscriptions" do
         create(:subscription, user_id: user_id)
         create(:subscription)
         expect { subject.destroy_for_user(Subscription.all.map(&:id), user_id) }.to change(Subscription, :count).by(-1)
