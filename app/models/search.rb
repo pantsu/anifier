@@ -13,9 +13,9 @@ class Search
 
   ## validations
 
-  validates_presence_of     :query
-  validates_inclusion_of    :order_mode,  in: ORDER_MODES, allow_nil: true
-  validates_inclusion_of    :match_mode,  in: MATCH_MODES, allow_nil: true
+  validates :query, presence: true
+  validates :order_mode, inclusion: { in: ORDER_MODES }, allow_nil: true
+  validates :match_mode, inclusion: { in: MATCH_MODES }, allow_nil: true
 
   ## class-methods
 
