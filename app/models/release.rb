@@ -54,6 +54,11 @@ class Release < ActiveRecord::Base
   delegate :name, to: :title, prefix: true
   delegate :name, to: :releaser, prefix: true
 
+  def self.resolutions
+    # @todo: cache and reload on import
+    self.uniq.pluck(:resolution).compact
+  end
+
   def self.from_feed(url)
     API::Grabber.new(url).releases.each { |data| import(data) }
   end
