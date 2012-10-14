@@ -4,6 +4,7 @@
 en:
   volume: "vol. %{value}"
   episodes: "ep. %{value}"
+  unspecified: "unspecified"
   hello: "Hello world"
   admin:
     releasers:
@@ -14,6 +15,9 @@ en:
       edit:
         are_you_sure: "Are you sure?"
         delete: "delete"
+  releasers:
+    show:
+      releaser: "Releaser %{name}"
   active_record:
     attributes:
       releaser:

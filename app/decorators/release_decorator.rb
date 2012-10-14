@@ -16,4 +16,8 @@ class ReleaseDecorator < ApplicationDecorator
     [volume, episodes].compact.join(", ")
   end
 
+  def resolution
+    model.resolution.blank? ? I18n.t(:unspecified) : "#{model.resolution}p"
+  end
+
 end
