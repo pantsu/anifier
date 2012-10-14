@@ -3,9 +3,9 @@
   %ul.unstyled.sub-unsub
     - releases.each do |r|
       %li
-        %button.btn.btn-success.btn-mini.fade{ data: { action: 'Subscribe', instance_id: r.id, 'original-title' => 'Subscribe'}}
+        %button.btn.btn-success.btn-mini.fade{ data: { action: 'Subscribe', instance_id: r.id, 'original-title' => t('subscribe')}}
           %i.icon-plus
         &nbsp;
         = r.decorate.full_title
 
-    = submit_tag "Subscribe", class: "btn btn-inverse dashboard-submit"
+    = submit_tag t('subscribe'), class: "btn btn-inverse dashboard-submit"

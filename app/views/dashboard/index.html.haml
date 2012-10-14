@@ -6,18 +6,18 @@
 
     .row
       .dashboard-unit.construct.span12
-        %h2 I know what I'm doing. I will find release myself!
+        %h2= t('constructor_title')
         = form_tag construct_subscriptions_path, method: :put, class: "dashboard-unit-inner .form-inline" do
-          = select_tag :releaser_id, options_from_collection_for_select(@releasers, :id, :name, params[:releaser_id].to_s), include_blank: 'Releaser'
+          = select_tag :releaser_id, options_from_collection_for_select(@releasers.to_a.insert(0, OpenStruct.new(id: nil, name: 'Release')), :id, :name)
           = hidden_field_tag :title_id
-          = autocomplete_field_tag :title, params[:title], autocomplete_title_name_titles_path, placeholder: t('title_autocomplete'), id_element: '#title_id' 
+          = autocomplete_field_tag :title, params[:title], autocomplete_title_name_titles_path, placeholder: t('title_autocomplete'), id_element: '#title_id'
           = submit_tag "Construct!", class: "btn btn-inverse"
 
 - else
   .hero-unit
     %h1
-      Anifier
-      %small Keep up with your beloved anime releases instantly
-    %p Have some patience. We working hard right now.
+      =t('project_title')
+      %small=t('keep_up')
+    %p=t('patience_we_working')
     .row
       = render 'shared/unauth_dash'

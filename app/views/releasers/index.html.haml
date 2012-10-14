@@ -4,7 +4,7 @@
     .row
       .span4
         .well
-          %h3 Releasers
+          %h3= t('releasers')
           %form#filter.form-search{ data: { list: '#releasers' }}
             .input-prepend
               %button.btn.disabled
@@ -26,12 +26,12 @@
                 - r.titles.each do |t|
                   %li{ data: { title_id: t.id }}
                     - if current_user.titles.include?(t)
-                      %button.btn.btn-danger.btn-mini.fade{ data: { action: 'Unsubscribe', instance_id: t.id, instance_class: t.class, 'original-title' => 'Unsubscribe'}}
+                      %button.btn.btn-danger.btn-mini.fade{ data: { action: 'Unsubscribe', instance_id: t.id, instance_class: t.class, 'original-title' => t('unsubscribe')}}
                         %i.icon-minus
                       &nbsp;
                       %span.text-success= t.name
                     - else
-                      %button.btn.btn-success.btn-mini.fade{ data: { action: 'Subscribe', instance_id: t.id, instance_class: t.class, 'original-title' => 'Subscribe'}}
+                      %button.btn.btn-success.btn-mini.fade{ data: { action: 'Subscribe', instance_id: t.id, instance_class: t.class, 'original-title' => t('subsribe')}}
                         %i.icon-plus
                       &nbsp;
                       = t.name

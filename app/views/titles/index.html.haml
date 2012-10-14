@@ -4,12 +4,12 @@
     .row
       .span4
         .well
-          %h3 Titles
+          %h3= t('titles')
           %form#filter.form-search{ data: { list: '#titles' }}
             .input-prepend
               %button.btn.disabled
                 %i.icon-filter
-              %input.search-query{ placeholder: "Filter", type: "text" }
+              %input.search-query{ placeholder: t('filter'), type: "text" }
 
 
           %ul#titles.nav.nav-pills.nav-stacked
@@ -26,12 +26,12 @@
                 - t.releasers.each do |r|
                   %li{ data: { title_id: r.id }}
                     - if current_user.releasers.include?(r)
-                      %button.btn.btn-danger.btn-mini.fade{ data: { action: 'Unsubscribe', instance_id: r.id, instance_class: r.class, 'original-title' => 'Unsubscribe'}}
+                      %button.btn.btn-danger.btn-mini.fade{ data: { action: 'Unsubscribe', instance_id: r.id, instance_class: r.class, 'original-title' => t('unsubscribe')}}
                         %i.icon-minus
                       &nbsp;
                       %span.text-success= r.name
                     - else
-                      %button.btn.btn-success.btn-mini.fade{ data: { action: 'Subscribe', instance_id: r.id, instance_class: r.class, 'original-title' => 'Subscribe'}}
+                      %button.btn.btn-success.btn-mini.fade{ data: { action: 'Subscribe', instance_id: r.id, instance_class: r.class, 'original-title' => t('subscribe')}}
                         %i.icon-plus
                       &nbsp;
                       = r.name

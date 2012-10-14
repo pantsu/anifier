@@ -3,12 +3,11 @@
     .container
       .row
         .span6
-          = link_to 'Anifier', root_path, class: 'brand'
+          = link_to t('project_title'), root_path, class: 'brand'
           - if user_signed_in?
             %ul.nav
-              %li= link_to "Releasers", releasers_path
-              %li= link_to "Titles", titles_path
-              %li= link_to "History", "#"
+              %li= link_to t('releasers'), releasers_path
+              %li= link_to t('titles'), titles_path
         .span3
           = form_tag root_path, method: :get, class: "navbar-search form-search" do
             .input-append
@@ -22,4 +21,5 @@
               = link_to destroy_user_session_path, method: :delete, class: 'btn btn-danger' do
                 %i.icon-off
             - else
-              %button.btn.btn-info{ data: { toggle: 'modal', target: '#sign-in-modal' }} Sign up/in
+              %button.btn.btn-info{ data: { toggle: 'modal', target: '#sign-in-modal' }}
+                =t('sign_up_in')

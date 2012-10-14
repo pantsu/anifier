@@ -27,7 +27,6 @@ en:
   search: "Search"
   title_autocomplete: "Title (autocomplete)"
   resolution: "Resolution"
-  search_results: "Search results"
   subscriptions:
     create:
       success: "Successfully subscribed!"
@@ -35,3 +34,13 @@ en:
     destroy:
       success: "Successfully unsubscribed!"
       failure: "You MUST watch it! (unsubscription failed, sorry)."
+  constructor_title: "I know what I'm doing. I will find release myself!"
+  construct: "Construct!"
+  keep_up: "Keep up with your beloved anime releases instantly"
+  patience_we_working: "Have some patience. We working hard right now."
+  subscribe: "Subscribe"
+  unsubscribe: "Unsubscribe"
+  titles: "Titles"
+  new_release_notification: "New release of %{title} by %{releaser}"
+  new_release_details: "Take a look at details at %{url}"
+  sign_up_in: "Sign up/in"

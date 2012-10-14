@@ -1,1 +1,2 @@
-New release of <%= @release.title_name %> by <% @release.releaser_name %>
+<%= t('new_release_notification', title: @release.title_name, releaser: @release.releaser_name) %>
+<%= t('new_release_details', url: @release.details_url) %>
