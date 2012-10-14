@@ -54,4 +54,30 @@ describe Subscription do
     s2.save.should be_false
     s2.should have(1).error_on(:releaser_id)
   end
+
+  context "creating destroying" do
+    subject { Subscription }
+    let(:user_id) { build_stubbed(:user).id }
+
+    describe "::create_from_release_ids" do
+      let(:release_ids) { 2.times { create(:release) }; Release.all.map(&:id) }
+
+      it "creates subscriptions if they are not exists already" do
+        expect { subject.create_from_release_ids(release_ids, user_id) }.to change(Subscription, :count).by(2)
+      end
+
+      it "does not create subscriptions if they are already exist" do
+        subject.create_from_release_ids(release_ids, user_id)
+        expect { subject.create_from_release_ids(release_ids, user_id) }.to_not change(Subscription, :count)
+      end
+    end
+
+    describe "::destroy_for_user" do
+      it "deletes only users subscrptions" do
+        create(:subscription, user_id: user_id)
+        create(:subscription)
+        expect { subject.destroy_for_user(Subscription.all.map(&:id), user_id) }.to change(Subscription, :count).by(-1)
+      end
+    end
+  end
 end
