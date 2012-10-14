@@ -10,4 +10,5 @@
         %li
           %span.text-success= s.decorate.full_title
           &nbsp;
-          %button.btn.btn-danger.btn-mini.fade Unsubscribe
+          %button.btn.btn-danger.btn-mini.fade{ data: { action: 'Unsubscribe', instance_id: s.id, instance_class: s.class, 'original-title' => 'Unsubscribe'}}
+            %i.icon-minus

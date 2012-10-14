@@ -28,8 +28,10 @@
                     - if current_user.titles.include?(t)
                       %span.text-success= t.name
                       &nbsp;
-                      %button.btn.btn-danger.btn-mini.fade Unsubscribe
+                      %button.btn.btn-danger.btn-mini.fade{ data: { action: 'Unsubscribe', instance_id: t.id, instance_class: t.class, 'original-title' => 'Unsubscribe'}}
+                        %i.icon-minus
                     - else
                       = t.name
                       &nbsp;
-                      %button.btn.btn-inverse.btn-mini.fade Subscribe
+                      %button.btn.btn-success.btn-mini.fade{ data: { action: 'Subscribe', instance_id: t.id, instance_class: t.class, 'original-title' => 'Subscribe'}}
+                        %i.icon-plus

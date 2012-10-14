@@ -5,4 +5,5 @@
       %li
         = r.decorate.full_title
         &nbsp;
-        %button.btn.btn-inverse.btn-mini.fade Subscribe
+        %button.btn.btn-success.btn-mini.fade{ data: { action: 'Subscribe', instance_id: r.id, 'original-title' => 'Subscribe'}}
+          %i.icon-plus
