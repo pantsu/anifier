@@ -6,5 +6,5 @@
 .span5
   %h3= t('random_releases')
   %ul
-    - @releasers.each do |r|
+    - @releasers.sample(20).each do |r|
       %li= r.name
