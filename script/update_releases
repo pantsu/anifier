@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 cd ..
 source /usr/local/rvm/scripts/rvm
