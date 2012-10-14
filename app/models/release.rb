@@ -55,4 +55,8 @@ class Release < ActiveRecord::Base
   rescue ActiveRecord::RecordNotUnique
   end
 
+  def full_title
+    "[#{releaser.name}] #{title_name}"
+  end
+
 end

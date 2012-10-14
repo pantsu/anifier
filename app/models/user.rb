@@ -12,4 +12,7 @@ class User < ActiveRecord::Base
   has_many :subscriptions
   has_many :titles, through: :subscriptions, uniq: true
 
+  def to_s
+    email
+  end
 end

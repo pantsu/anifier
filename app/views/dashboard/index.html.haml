@@ -3,3 +3,14 @@
   %h1 Anifier
   %h3 Get your favorite anime releases instantly in one place.
   %p Have some patience. We working hard right now.
+  .row
+    .span5
+      %h3 Latest releases
+      %ul
+        - @releases.each do |r|
+          %li= r.full_title
+    .span5
+      %h3 Some random releasers
+      %ul
+        - @releasers.each do |r|
+          %li= r.name
