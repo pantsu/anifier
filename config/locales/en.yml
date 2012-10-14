@@ -45,3 +45,4 @@ en:
   new_release_notification: "New release of %{title} by %{releaser}"
   new_release_details: "Take a look at details at %{url}"
   sign_up_in: "Sign up/in"
+  failure_on_create: "Subscription is not created"
