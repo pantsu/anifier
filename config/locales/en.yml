@@ -6,12 +6,13 @@ en:
   episodes: "ep. %{value}"
   unspecified: "unspecified"
   hello: "Hello world"
+  releasers:
+    show:
+      releaser: "Releaser %{name}"
   admin:
     releasers:
       updated: "Successfully updated"
       detroyed: "Successfully deleted"
-      show:
-        releaser: "Releaser %{name}"
       edit:
         are_you_sure: "Are you sure?"
         delete: "delete"
