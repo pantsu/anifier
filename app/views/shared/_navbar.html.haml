@@ -1,17 +1,25 @@
 .navbar.navbar-fixed-top
   .navbar-inner
     .container
-      = link_to t('project_title'), root_path, class: 'brand'
-      - if user_signed_in?
-        %ul.nav
-          %li= link_to t('releasers'), releasers_path
-          %li= link_to t('now_airing'), "#"
-          %li= link_to t('history'), "#"
-
-      .pull-right
-        - if user_signed_in?
-          = link_to current_user.decorate.name, current_user, class: 'current-user-link'
-          = link_to destroy_user_session_path, method: :delete, class: 'btn btn-danger' do
-            %i.icon-off
-        - else
-          %button.btn.btn-info{ data: { toggle: 'modal', target: '#sign-in-modal' }} Sign up/in
+      .row
+        .span6
+          = link_to 'Anifier', root_path, class: 'brand'
+          - if user_signed_in?
+            %ul.nav
+              %li= link_to "Releasers", releasers_path
+              %li= link_to "Now airing", "#"
+              %li= link_to "History", "#"
+        .span3
+          %form.navbar-search.form-search
+            .input-append
+              %input.search-query{ placeholder: "Search", type: "text" }
+              %button.btn{ type: 'submit' }
+                %i.icon-search
+        .span3
+          .pull-right
+            - if user_signed_in?
+              = link_to current_user.decorate.name, current_user, class: 'current-user-link'
+              = link_to destroy_user_session_path, method: :delete, class: 'btn btn-danger' do
+                %i.icon-off
+            - else
+              %button.btn.btn-info{ data: { toggle: 'modal', target: '#sign-in-modal' }} Sign up/in

@@ -1,17 +1,12 @@
 - if user_signed_in?
   .dashboard
-    .row.dashboard-search
-      = form_tag "#", class: "navbar-search pull-right" do
-        = text_field_tag :search, nil, class: "search-query"
-        = submit_tag "Search", class: "btn"
-
     .row
       .dashboard-unit.span6= render "shared/subscriptions", subscriptions: @subscriptions
       .dashboard-unit.span6= render "shared/new_releases", releases: @releases
 
     .row
       .dashboard-unit.construct.span12
-        %h2 Fuck your list, I will construct myself!
+        %h2 I know what I'm doing. I will find release by myself!
         = form_tag "#", class: "dashboard-unit-inner .form-inline" do
           = select :releaser, "id", @releasers.collect {|r| [r.name, r.id]}, include_blank: 'Releaser'
           = autocomplete_field_tag :title, nil, autocomplete_title_name_titles_path, placeholder: "Title (autocomplete)"
@@ -20,8 +15,9 @@
 
 - else
   .hero-unit
-    %h1 Anifier
-    %h3 Get your favorite anime releases instantly in one place.
+    %h1
+      Anifier
+      %small Keep up with your beloved anime releases instantly
     %p Have some patience. We working hard right now.
     .row
       = render 'shared/unauth_dash'
