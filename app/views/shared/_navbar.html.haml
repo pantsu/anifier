@@ -10,9 +10,9 @@
               %li= link_to "Titles", titles_path
               %li= link_to "History", "#"
         .span3
-          %form.navbar-search.form-search
+          = form_tag root_path, method: :get, class: "navbar-search form-search" do
             .input-append
-              %input.search-query{ placeholder: "Search", type: "text" }
+              = search_field_tag :q, params[:q], placeholder: t('search'), class: 'search-query'
               %button.btn{ type: 'submit' }
                 %i.icon-search
         .span3

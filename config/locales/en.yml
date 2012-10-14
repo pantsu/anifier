@@ -23,3 +23,8 @@ en:
   subscribe_latest: "Subscribe to latest releases by checking them in nearby box or choose %{releasers} or %{titles} you want to be notified about."
   now_airing: "Now airing"
   history: "History"
+  filter: "Filter"
+  search: "Search"
+  title_autocomplete: "Title (autocomplete)"
+  resolution: "Resolution"
+  search_results: "Search results"

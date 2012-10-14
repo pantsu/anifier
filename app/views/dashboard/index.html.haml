@@ -1,17 +1,17 @@
 - if user_signed_in?
   .dashboard
     .row
-      .dashboard-unit.span6= render "shared/subscriptions", subscriptions: @subscriptions
-      .dashboard-unit.span6= render "shared/new_releases", releases: @releases
-
-    .row
       .dashboard-unit.construct.span12
         %h2 I know what I'm doing. I will find release by myself!
         = form_tag "#", class: "dashboard-unit-inner .form-inline" do
           = select :releaser, "id", @releasers.collect {|r| [r.name, r.id]}, include_blank: 'Releaser'
-          = autocomplete_field_tag :title, nil, autocomplete_title_name_titles_path, placeholder: "Title (autocomplete)"
-          = select "resolution", "resolution", @resolutions, include_blank: 'Resolution'
+          = autocomplete_field_tag :title, nil, autocomplete_title_name_titles_path, placeholder: t('title_autocomplete')
+          = select "resolution", "resolution", @resolutions, include_blank: t('resolution')
           = submit_tag "Construct!", class: "btn btn-inverse"
+
+    .row
+      .dashboard-unit.span6= render "shared/subscriptions", subscriptions: @subscriptions
+      .dashboard-unit.span6= render "shared/new_releases", releases: @releases
 
 - else
   .hero-unit

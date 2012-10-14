@@ -22,10 +22,11 @@ class Search
   delegate :current_page, :total_pages, :total_entries, :query_time, to: :results, allow_nil: true
 
   def initialize(query, options = {})
-    @page, @limit = 1, 100
+    @page = 1
     @query = query
-    options.assert_valid_keys(:order_mode, :match_mode, :resolution, :audio, :video)
+    options.assert_valid_keys(:order_mode, :match_mode, :limit, :resolution, :audio, :video)
     options.each { |name, value| instance_variable_set :"@#{name}", value }
+    options[:limit] ||= 10
   end
 
   public
