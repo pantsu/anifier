@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121014130631) do
+ActiveRecord::Schema.define(:version => 20121014134236) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20121014130631) do
     t.string   "details_url"
   end
 
-  add_index "releases", ["releaser_id", "title_id"], :name => "index_releases_on_releaser_id_and_title_id", :unique => true
+  add_index "releases", ["raw"], :name => "index_releases_on_raw", :unique => true
   add_index "releases", ["releaser_id"], :name => "index_releases_on_releaser_id"
   add_index "releases", ["title_id"], :name => "index_releases_on_title_id"
 

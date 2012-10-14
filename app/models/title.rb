@@ -7,6 +7,7 @@ class Title < ActiveRecord::Base
   ## associations
 
   has_many :releasers
+  has_many :releases
   has_many :subscriptions, dependent: :delete_all
   has_many :users, through: :subscriptions, uniq: true
 

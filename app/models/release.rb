@@ -45,9 +45,8 @@ class Release < ActiveRecord::Base
 
   ## validations
 
-  validates :raw, :title_id, :releaser_id, :episodes, presence: true
+  validates :raw, :title_id, :releaser_id, presence: true
   validates :raw, uniqueness: true
-  validates :title_id, uniqueness: { scope: :releaser_id }
 
   ## class-methods
 
@@ -56,7 +55,7 @@ class Release < ActiveRecord::Base
 
   def self.resolutions
     # @todo: cache and reload on import
-    self.uniq.pluck(:resolution).compact
+    self.uniq.pluck(:resolution).compact.sort
   end
 
   def self.from_feed(url)
