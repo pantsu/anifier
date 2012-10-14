@@ -9,8 +9,8 @@ $ ->
   };
 
   function filterList(header, list) {
-    var form = $("#filter-releasers"),
-        input = $("#filter-releasers input");
+    var form = $("#filter"),
+        input = $("#filter input");
 
     $(input)
       .change( function () {
@@ -32,7 +32,7 @@ $ ->
   }
 
   $(function () {
-    filterList($("#filter-releasers"), $("#releasers"));
+    filterList($("#filter"), $("#filter").data('list'));
   });
 }(jQuery));
 `

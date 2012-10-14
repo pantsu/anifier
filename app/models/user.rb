@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
 
   has_many :subscriptions, dependent: :delete_all
   has_many :titles, through: :subscriptions, uniq: true
+  has_many :releasers, through: :subscriptions, uniq: true
+
 
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|

@@ -1,0 +1,35 @@
+.dashboard
+  / = paginate @releasers
+  .dashboard-unit
+    .row
+      .span4
+        .well
+          %h3 Titles
+          %form#filter.form-search{ data: { list: '#titles' }}
+            .input-prepend
+              %button.btn.disabled
+                %i.icon-filter
+              %input.search-query{ placeholder: "Filter", type: "text" }
+
+
+          %ul#titles.nav.nav-pills.nav-stacked
+            - @titles.each_with_index do |t, i|
+              %li{ class: "#{'active' if i == 0}"}
+                = link_to t.name, "#title_#{t.id}", data: { toggle: "pill" }
+      .span8
+        #titles.tab-content
+          - @titles.each_with_index do |t, i|
+            %div{ id: "title_#{t.id}", class: "tab-pane fade #{'in active' if i == 0}"}
+              %br/
+              %h3= "#{t.name} releasers"
+              %ul.unstyled
+                - t.releasers.each do |r|
+                  %li{ data: { title_id: r.id }}
+                    - if current_user.releasers.include?(r)
+                      %span.text-success= r.name
+                      &nbsp;
+                      %button.btn.btn-danger.btn-mini.fade Unsubscribe
+                    - else
+                      = r.name
+                      &nbsp;
+                      %button.btn.btn-inverse.btn-mini.fade Subscribe
