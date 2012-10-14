@@ -3,10 +3,12 @@ class SubscriptionsController < ApplicationController
 
   def create
     @subscription.user_id = current_user.id
+    @subscription.title_id = params[:title_id]
+    @subscription.releaser_id = params[:releaser_id]
     if @subscription.save
-      render json: { success: true, message: t("subscriptions.create.success") }
+      render json: { success: true, message: t('created'), url: subscription_path(@subscription) }
     else
-      render json: { success: false, message: t("subscriptions.create.failure") }
+      render json: { success: false, message: t('failure_on_create') }, status: :unprocessable_entity
     end
   end
 
@@ -25,8 +27,12 @@ class SubscriptionsController < ApplicationController
     end
   end
 
+  def index
+    render partial: 'shared/subscriptions', locals: { subscriptions: current_user.try(:subscriptions) }
+  end
+
   def destroy
     @subscription.destroy
-    render json: { success: true, notice: t("subscriptions.destroy.success") }
+    render json: { success: true, notice: t('destroyed'), url: subscriptions_path }
   end
 end

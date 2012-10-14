@@ -1,7 +1,7 @@
 - if user_signed_in?
   .dashboard
     .row
-      .dashboard-unit.span6= render "shared/subscriptions", subscriptions: @subscriptions
+      #dash-subscriptions.dashboard-unit.span6= render "shared/subscriptions", subscriptions: @subscriptions
       .dashboard-unit.span6= render "shared/new_releases", releases: @releases
 
     .row

@@ -5,4 +5,3 @@ jQuery ->
 
   $(".sub-unsub button.btn").tooltip
     placement: 'right'
-    title: $(@).data('action')
