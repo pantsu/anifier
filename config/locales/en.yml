@@ -5,16 +5,16 @@ en:
   volume: "vol. %{value}"
   episodes: "ep. %{value}"
   unspecified: "unspecified"
-  hello: "Hello world"
+  are_you_sure: "Are you sure?"
+  updated: "Successfully updated"
+  detroyed: "Successfully deleted"
+
   releasers:
     show:
       releaser: "Releaser %{name}"
   admin:
     releasers:
-      updated: "Successfully updated"
-      detroyed: "Successfully deleted"
       edit:
-        are_you_sure: "Are you sure?"
         delete: "delete"
   releasers:
     show:

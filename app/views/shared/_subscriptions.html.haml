@@ -1,0 +1,8 @@
+%h2 Watched
+= form_tag subscriptions_path, method: :delete, class: "dashboard-unit-inner" do
+  - subscriptions.each do |s|
+    = label_tag "subscription_ids[#{s.id}]", class: "checkbox" do
+      = check_box_tag "subscription_ids[]", s.id, false, id: "subscription_ids_#{s.id}"
+      = s.decorate.full_title
+
+  = submit_tag "Unsubscribe", class: "btn btn-danger dashboard-submit", confirm: t('are_you_sure')

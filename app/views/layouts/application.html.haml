@@ -22,6 +22,9 @@
 
     .container
 
+      - flash.each do |kind, message|
+        = message
+
       .content
         .row
           .span12= render "shared/flash"

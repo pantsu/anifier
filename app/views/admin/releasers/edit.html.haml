@@ -4,7 +4,7 @@
       .dashboard-unit-inner
         %h3= @releaser.name
 
-        %p= link_to t('.delete'), admin_releaser_path(@releaser), method: :delete, confirm: t('.are_you_sure'), class: "btn btn-danger"
+        %p= link_to t('.delete'), admin_releaser_path(@releaser), method: :delete, confirm: t('are_you_sure'), class: "btn btn-danger"
 
         = simple_form_for @releaser, url: admin_releaser_path(@releaser) do |f|
           = f.input :name, input_html: {class: "span11"}

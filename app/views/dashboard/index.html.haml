@@ -6,7 +6,7 @@
         = submit_tag "Search", class: "btn"
 
     .row
-      .dashboard-unit.span5= render "shared/watched_releases", releases: @releases
+      .dashboard-unit.span5= render "shared/subscriptions", subscriptions: @subscriptions
       .dashboard-unit.span5.pull-right= render "shared/new_releases", releases: @releases
 
     .row
@@ -17,9 +17,6 @@
           = autocomplete_field_tag :title, nil, autocomplete_title_name_titles_path, placeholder: "Title (autocomplete)"
           = select "resolution", "resolution", @resolutions, include_blank: 'Resolution'
           = submit_tag "Construct!", class: "btn btn-inverse dashboard-submit"
-
-
-
 
 - else
   .hero-unit

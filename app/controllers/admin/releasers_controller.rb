@@ -12,7 +12,7 @@ class Admin::ReleasersController < Admin::BaseController
 
   def update
     if @releaser.update_attributes(params[:releaser])
-      redirect_to admin_releasers_path, notice: t('admin.releasers.updated')
+      redirect_to admin_releasers_path, notice: t('updated')
     else
       render action: :edit
     end
@@ -20,6 +20,6 @@ class Admin::ReleasersController < Admin::BaseController
 
   def destroy
     @releaser.destroy
-    redirect_to admin_releasers_path, notice: t('admin.releasers.destroyed')
+    redirect_to admin_releasers_path, notice: t('destroyed')
   end
 end
