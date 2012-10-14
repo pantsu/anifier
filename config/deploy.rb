@@ -28,7 +28,7 @@ namespace :deploy do
   task :symlink_configs do
     run "ln -nsf #{shared_path}/config/unicorn/production.rb #{current_release}/config/unicorn_production.rb"
     run "ln -nsf #{shared_path}/config/database.yml #{current_release}/config/"
-    %w(smtp).each do |initializer|
+    %w(smtp omniauth).each do |initializer|
       run "ln -nsf #{shared_path}/config/initializers/#{initializer}.rb #{current_release}/config/initializers/"
     end
   end

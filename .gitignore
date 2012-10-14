@@ -24,3 +24,4 @@ Thumbs.db
 tmp/*
 .rbenv-version
 anifier_dev
+config/initializers/omniauth.rb

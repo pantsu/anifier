@@ -2,6 +2,12 @@
   = f.input :email
   = f.input :password
   = f.input :remember_me, as: :boolean
+  %fieldset#omniauth
+    -# = link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter)
+    -# %br
+    = link_to "Sign in with FaceBook", user_omniauth_authorize_path(:facebook)
+    %br
+    = link_to "Sign in with GitHub", user_omniauth_authorize_path(:github)
   .form-actions
     = f.button :submit, t("devise.sessions.sign_in"), :class => 'btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), root_path, :class => 'btn'
