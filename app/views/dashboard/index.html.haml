@@ -6,26 +6,8 @@
         = submit_tag "Search", class: "btn"
 
     .row
-      .dashboard-unit.span5
-        %h2 Watched
-        = form_tag "#", class: "dashboard-unit-inner" do
-          - @releases.each do |r|
-            = label_tag :release, class: "checkbox" do
-              = check_box_tag :release
-              = r.decorate.full_title
-
-          = submit_tag "Unsubscribe", class: "btn btn-danger dashboard-submit"
-
-
-      .dashboard-unit.span5.pull-right
-        %h2 Brand new
-        = form_tag "#", class: "dashboard-unit-inner" do
-          - @releases.each do |r|
-            = label_tag :release, class: "checkbox" do
-              = check_box_tag :release
-              = r.decorate.full_title
-
-          = submit_tag "Subscribe", class: "btn btn-inverse dashboard-submit"
+      .dashboard-unit.span5= render "shared/watched_releases", releases: @releases
+      .dashboard-unit.span5.pull-right= render "shared/new_releases", releases: @releases
 
     .row
       .dashboard-unit.construct.span12

@@ -1,3 +1,9 @@
-%ul
-  %li= @releaser.name_with_link
-  %li= @releaser.description
+.dashboard
+  .row
+    .dashboard-unit.span12
+      .dashboard-unit-inner
+        %h2= @releaser.name_with_link
+        %p= @releaser.description
+  .row
+    .dashboard-unit.span5= render "shared/watched_releases", releases: @releaser.releases
+    .dashboard-unit.span5.pull-right= render "shared/new_releases", releases: @releaser.releases

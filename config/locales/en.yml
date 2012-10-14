@@ -19,6 +19,8 @@ en:
   releasers:
     show:
       releaser: "Releaser %{name}"
+    index:
+      releaser: "Releaser %{name}"
   active_record:
     attributes:
       releaser:

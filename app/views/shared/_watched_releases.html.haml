@@ -1,0 +1,8 @@
+%h2 Watched
+= form_tag "#", class: "dashboard-unit-inner" do
+  - releases.each do |r|
+    = label_tag :release, class: "checkbox" do
+      = check_box_tag :release
+      = r.decorate.full_title
+
+  = submit_tag "Unsubscribe", class: "btn btn-danger dashboard-submit"
