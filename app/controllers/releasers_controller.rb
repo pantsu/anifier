@@ -7,5 +7,6 @@ class ReleasersController < ApplicationController
 
   def show
     @releaser = @releaser.decorate
+    @subscriptions = current_user.subscriptions.for_releaser(@releaser)
   end
 end
