@@ -14,3 +14,12 @@
           = render template: "devise/sessions/new"
         #sign_up.tab-pane.fade
           = render template: "devise/registrations/new"
+  .modal-footer
+    Sign in via your account on
+    = link_to user_omniauth_authorize_path(:facebook), class: 'btn' do
+      = image_tag 'f_logo.png', size: '16x16'
+      Facebook
+    or
+    = link_to user_omniauth_authorize_path(:github), class: 'btn' do
+      = image_tag 'github_logo.png', size: '16x16'
+      Github

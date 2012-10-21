@@ -3,8 +3,5 @@
   = f.input :email
   = f.input :password
   = f.input :password_confirmation
-  .form-actions
-    = f.button :submit, t("devise.registrations.sign_up"), :class => 'btn-primary'
-    = link_to t('cancel', :default => t("helpers.links.cancel")), root_path, :class => 'btn'
-
-  / = render "devise/shared/links"
+  = f.button :submit, t("devise.registrations.sign_up"), :class => 'btn-primary'
+  = link_to t('cancel', :default => t("helpers.links.cancel")), root_path, :class => 'btn'
