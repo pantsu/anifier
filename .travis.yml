@@ -1,0 +1,9 @@
+language: ruby
+rvm:
+  - 1.9.2
+  - 1.9.3
+  - ree
+  - rbx
+  - jruby
+
+script: bundle exec rspec spec
