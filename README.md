@@ -35,8 +35,8 @@ TODO
 
 ## Authors
 
-* @Bregor
-* @SSDany
-* @OutPunk
-* @icrowley
-* @kugaevsky
+* [Bregor](https://github.com/Bregor)
+* [SSDany](https://github.com/SSDany)
+* [OutPunk](https://github.com/OutPunk)
+* [icrowley](https://github.com/icrowley)
+* [kugaevsky](https://github.com/kugaevsky)
