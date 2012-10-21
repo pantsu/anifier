@@ -3,7 +3,7 @@ require "rvm/capistrano"
 require 'thinking_sphinx/deploy/capistrano'
 
 set :application, "anifier"
-set :repository,  "git@github.com:railsrumble/r12-team-527.git"
+set :repository,  "git@github.com:pantsu/anifier.git"
 
 set :scm, :git
 set :deploy_to, "/var/www/#{application}"
@@ -12,9 +12,9 @@ set :use_sudo, false
 set :rvm_type, :system
 set :rvm_ruby_string, 'default@anifier'
 
-role :web, "198.74.58.246"                          # Your HTTP server, Apache/etc
-role :app, "198.74.58.246"                          # This may be the same as your `Web` server
-role :db,  "198.74.58.246", :primary => true # This is where Rails migrations will run
+role :web, "92.243.64.56"                          # Your HTTP server, Apache/etc
+role :app, "92.243.64.56"                          # This may be the same as your `Web` server
+role :db,  "92.243.64.56", :primary => true # This is where Rails migrations will run
 
 namespace :deploy do
   %w(start stop restart up down).each do |action|
