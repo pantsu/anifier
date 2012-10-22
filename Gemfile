@@ -57,6 +57,6 @@ group :development, :test do
   gem 'ffaker'
   gem 'fuubar'
   gem 'pry'
-  # gem 'pry-debugger'
+  gem 'pry-debugger'
   gem 'sqlite3'
 end
