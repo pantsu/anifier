@@ -83,12 +83,21 @@ body {
 
 // Footer
 
-.copyright {
+footer {
   line-height: 46px;
   font-size: 12px;
   color: #7B7B7B;
+  .navbar .nav > li > a,
   a {
     color: #7B7B7B;
+    .transition(none);
+    &:hover {
+      color: black;
+      text-decoration: underline;
+    }
+    &:active {
+      color: @navbarLinkColorActive;
+    }
   }
 }
 
