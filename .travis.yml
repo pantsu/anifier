@@ -2,5 +2,11 @@ language: ruby
 rvm:
   - 1.9.2
   - 1.9.3
-
+services:
+  - redis
+  - postgresql
+before_script:
+  - psql -c 'create database anifier_test;' -U postgres
+  - bash script/travis_db
+  - bash script/update_releases test
 script: bundle exec rspec spec

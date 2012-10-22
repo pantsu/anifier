@@ -3,4 +3,4 @@
 cd $(dirname ${BASH_SOURCE[0]})/..
 source /usr/local/rvm/scripts/rvm
 rvm default@anifier
-bundle exec rake releases:from_feed RAILS_ENV=production
+bundle exec rake releases:from_feed RAILS_ENV=$1
