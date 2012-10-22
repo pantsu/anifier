@@ -1,4 +1,5 @@
-# Anifier  [![Build Status](https://travis-ci.org/pantsu/anifier.png)](https://travis-ci.org/pantsu/anifier)
+# Anifier  [![Build Status](https://travis-ci.org/pantsu/anifier.png)](https://travis-ci.org/pantsu/anifier) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/pantsu/anifier)
+
 Keep up with your beloved anime releases instantly.
 
 AniFier is a simple ongoing-anime notifier.
