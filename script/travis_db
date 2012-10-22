@@ -4,6 +4,6 @@ cd $(dirname ${BASH_SOURCE[0]})/../config
 cat > database.yml<<EOF
 test:
   adapter: postgresql
-  database: myapp_test
+  database: anifier_test
   username: postgres
 EOF
