@@ -8,5 +8,5 @@ services:
 before_script:
   - psql -c 'create database anifier_test;' -U postgres
   - bash script/travis_db
-  - bash script/update_releases test
+  # - bash script/update_releases test
 script: bundle exec rspec spec
