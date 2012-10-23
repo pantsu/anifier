@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export PATH=/usr/local/bin:/usr/bin:/bin:$PATH
+
 cd $(dirname ${BASH_SOURCE[0]})/..
 source /usr/local/rvm/scripts/rvm
 rvm default@anifier
