@@ -15,7 +15,7 @@
         #sign_up.tab-pane.fade
           = render template: "devise/registrations/new"
   .modal-footer
-    Sign in via your account on
+    Sign in via
     = link_to user_omniauth_authorize_path(:facebook), class: 'btn' do
       = image_tag 'f_logo.png', size: '16x16'
       Facebook
@@ -23,3 +23,7 @@
     = link_to user_omniauth_authorize_path(:github), class: 'btn' do
       = image_tag 'github_logo.png', size: '16x16'
       Github
+    != "&nbsp;or even&nbsp"
+    = link_to user_omniauth_authorize_path(:google_oauth2), class: 'btn' do
+      = image_tag 'google_logo.png', size: '16x16'
+      Google
