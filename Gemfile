@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 gem 'pg'
+
+# AAA
 gem 'cancan'
 gem 'devise'
 gem 'devise-encryptable'
@@ -9,6 +11,8 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
+gem 'omniauth-google-oauth2', :git => 'git://github.com/zquestz/omniauth-google-oauth2.git'
+
 gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'draper'
